@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&amp;family=EB+Garamond:ital,wght@0,500;0,600;1,500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#fdf9f1;color:#1c1c17;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "tertiary-container": "#5d7c5a", "on-background": "#1c1c17", "surface-container-highest": "#e6e2da", "flora-sage": "#6B846A", "surface-container-low": "#f7f3eb", "primary": "#864f00", "surface": "#fdf9f1", "on-primary-container": "#fffbff", "primary-fixed-dim": "#ffb86b", "secondary-fixed": "#fcdcce", "propolis-charcoal": "#1B1411", "on-tertiary-container": "#f7fff1", "surface-container": "#f1ede6", "inverse-on-surface": "#f4f0e8", "on-error": "#ffffff", "surface-container-lowest": "#ffffff", "secondary": "#71594f", "surface-variant": "#e6e2da", "surface-container-high": "#ece8e0", "surface-tint": "#895100", "secondary-fixed-dim": "#dfc0b3", "on-tertiary-fixed": "#042108", "on-primary-fixed": "#2c1700", "golden-nectar": "#F5BD47", "on-secondary-fixed": "#281810", "inverse-primary": "#ffb86b", "inverse-surface": "#31302b", "secondary-container": "#f9d9cc", "tertiary-fixed-dim": "#add0a8", "on-secondary-fixed-variant": "#584238", "primary-fixed": "#ffdcbc", "primary-container": "#a56612", "error-container": "#ffdad6", "honeycomb-cream": "#FDF9F2", "on-secondary": "#ffffff", "on-surface-variant": "#524437", "tertiary": "#456343", "outline-variant": "#d7c3b2", "on-error-container": "#93000a", "on-tertiary-fixed-variant": "#304e2f", "surface-dim": "#dddad2", "background": "#fdf9f1", "on-secondary-container": "#755d53", "on-primary-fixed-variant": "#683d00", "glass-border": "rgba(193, 125, 42, 0.18)", "amber-radiance": "#E89B2B", "on-primary": "#ffffff", "on-surface": "#1c1c17", "surface-bright": "#fdf9f1", "error": "#ba1a1a", "outline": "#857465", "glass-frost": "rgba(255, 255, 255, 0.65)", "tertiary-fixed": "#c9ecc3", "on-tertiary": "#ffffff", "beeswax-surface": "#F4ECE1" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "margin-mobile": "1.25rem", "gutter": "1.5rem", "space-lg": "1.75rem", "space-xl": "3rem", "gutter-mobile": "1rem", "space-sm": "0.5rem", "space-md": "1rem", "space-xs": "0.25rem", "margin": "4rem" }, fontFamily: { "headline-sm": ["EB Garamond"], "display-lg": ["EB Garamond"], "headline-md": ["EB Garamond"], "body-lg": ["DM Sans"], "headline-lg-mobile": ["EB Garamond"], "body-md": ["DM Sans"], "label-sm": ["DM Sans"], "label-lg": ["DM Sans"], "title-lg": ["DM Sans"], "label-md": ["DM Sans"], "headline-lg": ["EB Garamond"], "display-lg-mobile": ["EB Garamond"] }, fontSize: { "headline-sm": ["22px", { "lineHeight": "28px", "fontWeight": "500" }], "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "500" }], "headline-md": ["28px", { "lineHeight": "36px", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "headline-lg-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500" }], "label-lg": ["13px", { "lineHeight": "18px", "letterSpacing": "0.06em", "fontWeight": "600" }], "title-lg": ["18px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["11px", { "lineHeight": "16px", "letterSpacing": "0.12em", "fontWeight": "600" }], "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "display-lg-mobile": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.01em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_4px_20px_rgba(43,26,18,0.03)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs"><button aria-label="Go Back" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-primary transition-colors active:scale-95" onclick="history.back()"><span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span></button><h1 class="font-headline-sm text-headline-sm text-propolis-charcoal truncate max-w-[200px]">Product Details</h1></div><div class="flex items-center gap-space-xs"><button aria-label="Share" class="w-11 h-11 flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-95"><span class="material-symbols-outlined text-[22px]">share</span></button><div class="flex items-center ml-1"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-[0_2px_8px_rgba(43,26,18,0.12)]" src="https://lh3.googleusercontent.com/aida/AEtjO1X5cpJbXlSnnQz-rxQbmwDoSvVPMIWPA8VLu9AQn696VcKeiIfDjBR-uxe9a3l7mXyRAN3uMGQEuf4zrIsdHPIo2HmMPzeu0WuHifTtJobO4OQ_8UjXhFxK7TgG9ZC2KqeWuWyd4vkXdeAgG8w-fbWvj5FcVZ4be9srMu4NNODxxKsxK5rbPR2cCn5NLlgO-UCSIyDNV8LI3wPa7ZFvZ22DiRBszhDQ9pOw9izfWjIGMFQtp5Fi4NTGBEzDamdvHstAjHPcTGUQww"/></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-safe bg-surface min-h-screen"><div class="flex flex-col w-full pb-32">
+<!-- Micro Breadcrumb Bar -->
+<div class="px-margin-mobile pt-3 pb-2 flex items-center gap-1.5 text-on-surface-variant font-body-md text-label-sm uppercase tracking-widest">
+<span class="hover:text-primary transition-colors cursor-pointer">Collections</span>
+<span class="material-symbols-outlined text-[13px] text-outline">chevron_right</span>
+<span class="text-primary font-semibold">Wild Jamun Terroir</span>
+</div>
+<!-- Full-Width Interactive Gallery Carousel -->
+<section class="relative w-full overflow-hidden bg-surface-container-low" id="carousel-section">
+<div class="flex transition-transform duration-500 ease-out w-full" id="carousel-track">
+<!-- Slide 1: Primary Jar Mockup -->
+<div class="min-w-full relative aspect-square flex items-center justify-center p-6">
+<img class="w-full h-full object-cover rounded-xl shadow-md" data-alt="Minimalist luxury glass jar of dark wild jamun blossom honey with an embossed wax seal, placed on an organic warm travertine slab with soft golden apiary morning light and raw honeycomb crumbs." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Oj56ykLd2zn0cc6MkCDqyLw35OPEtL6bTWrVwhG7LT5jw1uW0oeCII2bo1Nq_bz8pD3bz15FO9Kk3ccfwvKTmfbSpf1ZkAA_25uTyvM2gHz1vHhH3xTgOYvq99nhog1ijOKgfiwXFfSZSZMMTBMZPq5bwJ8LoDMvnzocgI7WT6m17Dj2ZUrNGzQde76O_miHCbO3aF3XZbfp0nZQMO2d-7NoI-FR_04J3Exl5m94tCjfJwsRX6Eb"/>
+<!-- Floating Glassmorphic Certification Chip -->
+<div class="absolute top-8 left-8 backdrop-blur-md bg-surface-container-lowest/80 px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-amber-radiance text-[16px]">verified</span>
+<span class="font-label-md text-label-md text-propolis-charcoal uppercase">Single Origin Raw</span>
+</div>
+</div>
+<!-- Slide 2: Back Label & NMR Batch QR -->
+<div class="min-w-full relative aspect-square flex items-center justify-center p-6">
+<img class="w-full h-full object-cover rounded-xl shadow-md" data-alt="Close up editorial shot of botanical amber glass honey jar back label featuring an authentic printed NMR purity certification QR code and handwritten batch number against dried jamun leaves." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtcJni6Vt_hYdZljgA8EUqq7k7LQg1r2k1Br5nf1l7B75meE3VI_ax8S7Qh-0mBlhO_s0qOu0-G5vw8l1mSxrtqdSxljW1tO7ZTGywEyf5oVtEoS-hp6rHje10Aten2-RMXy_aSZTvVpIvk_DtIYaWLIfe2RcKyJqnzpoTK5IlFvB-WgtE8LHEJOQmKY_IwQDVjvGrNhYvIlSBPgYcrWPM9EgnX-5dq6wRA01lyGU6JO_nbVyflbhW"/>
+<div class="absolute top-8 left-8 backdrop-blur-md bg-surface-container-lowest/80 px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-tertiary text-[16px]">qr_code_scanner</span>
+<span class="font-label-md text-label-md text-propolis-charcoal uppercase">NMR Batch Verified</span>
+</div>
+</div>
+<!-- Slide 3: Honey Texture Pour -->
+<div class="min-w-full relative aspect-square flex items-center justify-center p-6">
+<img class="w-full h-full object-cover rounded-xl shadow-md" data-alt="Sensory macro shot of dense viscous dark purple-tinted amber honey slowly drizzling from a hand-carved olive wood dipper with glowing light reflections and micro air bubbles." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcGjrFX2bYE_rYpA6NTWN-oY78KkQpBSFMCU_3-heV5RYXcXuflpieOjMc-GFbqvGoLzuJt1cBvAADgAu5iIOfBQpx62VANtTUIyXyBEfP3V0w4cNN7Tml0MIjkm1bLElO1rL3WiA3xEYzIeH-89vR2S_sCxU2lKFUWdUb7klSa4nzS18U10uqMH5qx9LzyK6p_ORISoEbb8_scufHqppaJXR9fK05rO-fr8eNaxb3eO504aErGZq4"/>
+<div class="absolute top-8 left-8 backdrop-blur-md bg-surface-container-lowest/80 px-3 py-1.5 rounded-full shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-amber-radiance text-[16px]">water_drop</span>
+<span class="font-label-md text-label-md text-propolis-charcoal uppercase">Cold Extracted</span>
+</div>
+</div>
+</div>
+<!-- Carousel Pagination Indicators -->
+<div class="absolute bottom-4 inset-x-0 flex justify-center items-center gap-2 z-10">
+<button aria-label="Go to slide 1" class="carousel-dot w-6 h-1.5 rounded-full bg-primary transition-all duration-300" onclick="goToSlide(0)"></button>
+<button aria-label="Go to slide 2" class="carousel-dot w-2 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300" onclick="goToSlide(1)"></button>
+<button aria-label="Go to slide 3" class="carousel-dot w-2 h-1.5 rounded-full bg-surface-container-highest transition-all duration-300" onclick="goToSlide(2)"></button>
+</div>
+</section>
+<!-- Product Narrative Header -->
+<section class="px-margin-mobile pt-5 pb-4 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md tracking-wider uppercase">
+<span class="material-symbols-outlined text-[14px] text-tertiary">forest</span>
+<span>Balaghat Forest Terroir</span>
+<span class="text-outline-variant">•</span>
+<span class="font-semibold text-primary">Batch #BD-JAMUN</span>
+</div>
+<span class="bg-secondary-container text-on-secondary-container font-label-sm text-label-sm px-2.5 py-0.5 rounded-full">Spring Bloom</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-propolis-charcoal font-semibold leading-tight">
+      Wild Raw Jamun Blossom Nectar
+    </h1>
+<!-- Rating & Purity Pill Bar -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<div class="flex items-center gap-1 bg-surface-container-low px-2.5 py-1 rounded-full shadow-sm">
+<span class="material-symbols-outlined text-amber-radiance text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-lg text-title-lg text-propolis-charcoal">4.9</span>
+<span class="text-on-surface-variant font-body-md text-body-md">(348 reviews)</span>
+</div>
+<div class="flex items-center gap-1 bg-tertiary/10 text-tertiary px-3 py-1 rounded-full font-label-md text-label-md font-medium">
+<span class="material-symbols-outlined text-[14px]">eco</span>
+<span>100% Raw &amp; Unfiltered</span>
+</div>
+</div>
+</section>
+<!-- Pricing & Size Selector -->
+<section class="px-margin-mobile py-4 flex flex-col gap-3 bg-surface-container-lowest mx-margin-mobile rounded-xl shadow-sm">
+<div class="flex items-baseline justify-between">
+<div class="flex items-baseline gap-2">
+<span class="font-headline-md text-headline-md text-propolis-charcoal font-semibold" id="current-price">₹680</span>
+<span class="text-on-surface-variant font-body-md text-body-md line-through text-outline">₹820</span>
+<span class="text-tertiary font-label-md text-label-md font-semibold">Save 17%</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">Inclusive of all artisanal taxes</span>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<label class="text-propolis-charcoal font-label-md text-label-md uppercase tracking-wider font-semibold">Select Artisanal Vessel</label>
+<div class="grid grid-cols-3 gap-2" id="size-selector-group">
+<!-- 350g Option -->
+<button class="size-pill relative flex flex-col items-center justify-center py-2.5 px-2 rounded-lg bg-surface-container-low transition-all duration-200 shadow-sm bg-primary/10" onclick="selectSize('350g', '₹680', this)" type="button">
+<span class="font-title-lg text-title-lg text-primary font-semibold">350g</span>
+<span class="text-primary font-label-sm text-label-sm">₹680</span>
+<span class="absolute -top-2 right-1.5 bg-amber-radiance text-propolis-charcoal text-[9px] font-bold px-1.5 py-0.2 rounded-full">POPULAR</span>
+</button>
+<!-- 500g Option -->
+<button class="size-pill relative flex flex-col items-center justify-center py-2.5 px-2 rounded-lg bg-surface-container transition-all duration-200 text-on-surface hover:bg-surface-container-high" onclick="selectSize('500g', '₹940', this)" type="button">
+<span class="font-title-lg text-title-lg font-medium">500g</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">₹940</span>
+</button>
+<!-- 1kg Option -->
+<button class="size-pill relative flex flex-col items-center justify-center py-2.5 px-2 rounded-lg bg-surface-container transition-all duration-200 text-on-surface hover:bg-surface-container-high" onclick="selectSize('1kg', '₹1,750', this)" type="button">
+<span class="font-title-lg text-title-lg font-medium">1kg</span>
+<span class="text-on-surface-variant font-label-sm text-label-sm">₹1,750</span>
+<span class="absolute -top-2 right-1.5 bg-tertiary text-on-tertiary text-[9px] font-bold px-1.5 py-0.2 rounded-full">BEST VALUE</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Flavor & Sensory Terroir Matrix -->
+<section class="px-margin-mobile pt-6 pb-2">
+<div class="bg-surface-container-low p-4 rounded-xl shadow-sm flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-radiance text-[20px]">local_florist</span>
+<h2 class="font-title-lg text-title-lg text-propolis-charcoal font-semibold">Sensory Terroir Matrix</h2>
+</div>
+<span class="text-tertiary font-label-sm text-label-sm uppercase">Late Bloom Profile</span>
+</div>
+<!-- Tactile Sensory Metric Sliders -->
+<div class="flex flex-col gap-3">
+<!-- Metric 1: Sweetness -->
+<div class="flex items-center justify-between text-body-md">
+<span class="text-on-surface-variant font-body-md">Sweetness</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-surface-container-highest"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-surface-container-highest"></span>
+<span class="ml-2 font-label-sm text-label-sm text-on-surface-variant w-12 text-right">Mellow</span>
+</div>
+</div>
+<!-- Metric 2: Viscosity -->
+<div class="flex items-center justify-between text-body-md">
+<span class="text-on-surface-variant font-body-md">Viscosity</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-surface-container-highest"></span>
+<span class="ml-2 font-label-sm text-label-sm text-on-surface-variant w-12 text-right">Velvet</span>
+</div>
+</div>
+<!-- Metric 3: Tannic Note -->
+<div class="flex items-center justify-between text-body-md">
+<span class="text-on-surface-variant font-body-md">Tannic Earth</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-surface-container-highest"></span>
+<span class="ml-2 font-label-sm text-label-sm text-on-surface-variant w-12 text-right">Pronounced</span>
+</div>
+</div>
+</div>
+<!-- Distinct Notes Tasting Ribbon -->
+<div class="pt-2 flex flex-col gap-2">
+<span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">Aromatic Bouquet &amp; Notes</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="bg-surface-container-lowest px-3 py-1 rounded-full text-on-surface font-label-md text-label-md shadow-sm">Wild Purple Plum</span>
+<span class="bg-surface-container-lowest px-3 py-1 rounded-full text-on-surface font-label-md text-label-md shadow-sm">Deciduous Bark</span>
+<span class="bg-surface-container-lowest px-3 py-1 rounded-full text-on-surface font-label-md text-label-md shadow-sm">Anupana Herbal Bitters</span>
+</div>
+</div>
+</div>
+</section>
+<!-- German NMR Lab Purity Verification Card -->
+<section class="px-margin-mobile py-3">
+<div class="relative overflow-hidden bg-surface-container-highest/60 p-4 rounded-xl shadow-md flex flex-col gap-3">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center shrink-0 shadow-sm text-on-tertiary-container">
+<span class="material-symbols-outlined text-[22px]">science</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<h3 class="font-title-lg text-title-lg text-propolis-charcoal font-semibold">German NMR Lab Certified</h3>
+<span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-snug pt-0.5">
+            100% C4 Synthetic Sugar Negative. Cold-extracted, zero micro-filtration with 18.2 DU high active living diastase enzymes.
+          </p>
+</div>
+</div>
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-1 text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span>Intertek Germany Protocol</span>
+</div>
+<button class="text-primary font-label-md text-label-md font-semibold flex items-center gap-1 active:opacity-75" onclick="alert('Downloading Official NMR Certificate PDF for Batch #BD-JAMUN...')" type="button">
+<span>View Certificate</span>
+<span class="material-symbols-outlined text-[15px]">arrow_outward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Expandable Deep Accordions -->
+<section class="px-margin-mobile py-2 flex flex-col gap-2">
+<!-- Accordion 1: Terroir & Tribal Origin -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full px-4 py-3.5 flex items-center justify-between text-left" onclick="toggleAccordion('accordion-terroir')">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">explore</span>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-medium">Terroir &amp; Tribal Origin</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200" id="accordion-terroir-icon">expand_more</span>
+</button>
+<div class="hidden px-4 pb-4 flex flex-col gap-2" id="accordion-terroir">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Foraged ethically by the Baiga indigenous forest dwellers in the dense deciduous buffer belts of Balaghat, Madhya Pradesh. The wild bees forage exclusively on the short-lived white blossoms of towering Syzygium cumini (Jamun) trees during late May.
+        </p>
+<div class="flex items-center gap-2 pt-1 text-label-sm font-label-sm text-secondary">
+<span class="material-symbols-outlined text-[16px]">pin_drop</span>
+<span>GPS Coordinates: 21°54'N, 80°11'E</span>
+</div>
+</div>
+</div>
+<!-- Accordion 2: Ayurvedic Health Benefits -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full px-4 py-3.5 flex items-center justify-between text-left" onclick="toggleAccordion('accordion-ayurveda')">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">spa</span>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-medium">Ayurvedic Health Dynamics</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200" id="accordion-ayurveda-icon">expand_more</span>
+</button>
+<div class="hidden px-4 pb-4 flex flex-col gap-2" id="accordion-ayurveda">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Renowned in classic Ayurvedic pharmacopeia for its naturally low glycemic index compared to multifloral honeys. Rich in jamboline, anthocyanins, and natural polyphenols that facilitate calm metabolic balance and support healthy gut microbiota.
+        </p>
+<div class="flex gap-2 pt-1">
+<span class="bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm px-2.5 py-1 rounded-full">Low Glycemic</span>
+<span class="bg-surface-container-low text-on-surface-variant text-label-sm font-label-sm px-2.5 py-1 rounded-full">Deep Pitta Pacifying</span>
+</div>
+</div>
+</div>
+<!-- Accordion 3: Storage & Natural Crystallization -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full px-4 py-3.5 flex items-center justify-between text-left" onclick="toggleAccordion('accordion-storage')">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">ac_unit</span>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-medium">Crystallization &amp; Care</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200" id="accordion-storage-icon">expand_more</span>
+</button>
+<div class="hidden px-4 pb-4 flex flex-col gap-2" id="accordion-storage">
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          Raw unfiltered honey naturally crystallizes over time due to natural pollen nuclei. Crystallization is proof of raw unpasteurized authenticity! To restore runny amber liquidity, simply rest the glass jar in a warm water bath under 40°C. Never microwave.
+        </p>
+</div>
+</div>
+</section>
+<!-- Verified Customer Reviews Section -->
+<section class="px-margin-mobile pt-5 pb-4 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-propolis-charcoal font-semibold">Taster Impressions</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Verified Harvester Community</p>
+</div>
+<button class="text-primary font-label-md text-label-md font-semibold" type="button">View All 348</button>
+</div>
+<!-- Review Card 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-label-md text-primary">AK</div>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-medium">Anandita K.</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">3 days ago</span>
+</div>
+<div class="flex items-center gap-1 text-amber-radiance">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 font-label-sm text-label-sm text-tertiary font-medium">Verified Forager</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-snug">
+        "Completely unlike supermarket syrups. You immediately taste the slight tannic sharpness of wild jamun followed by deep floral resin. Truly medicinal and luxurious."
+      </p>
+</div>
+<!-- Review Card 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-7 h-7 rounded-full bg-surface-container-high flex items-center justify-center font-bold text-label-md text-primary">VS</div>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-medium">Vikram S.</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">1 week ago</span>
+</div>
+<div class="flex items-center gap-1 text-amber-radiance">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="ml-1 font-label-sm text-label-sm text-tertiary font-medium">Verified Forager</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-snug">
+        "Scanned the QR code and checked the NMR certificate directly. It feels good knowing honest, pure beekeeping still exists in India."
+      </p>
+</div>
+</section>
+<!-- Sticky Bottom Floating CTA Bar -->
+<div class="fixed bottom-0 inset-x-0 z-40 bg-surface/90 backdrop-blur-xl px-margin-mobile py-3.5 shadow-[0_-8px_24px_rgba(43,26,18,0.08)] flex items-center justify-between gap-3 pb-safe">
+<!-- Quantity Stepper Pill -->
+<div class="flex items-center bg-surface-container-lowest rounded-full p-1 shadow-sm shrink-0">
+<button aria-label="Decrease quantity" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container active:scale-95 transition-transform" onclick="adjustQuantity(-1)" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+<span class="w-7 text-center font-title-lg text-title-lg font-semibold text-propolis-charcoal" id="product-quantity">1</span>
+<button aria-label="Increase quantity" class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface hover:bg-surface-container active:scale-95 transition-transform" onclick="adjustQuantity(1)" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+</div>
+<!-- Prominent Primary Action Button with Dynamic Pricing -->
+<button class="flex-1 bg-propolis-charcoal hover:bg-primary text-honeycomb-cream font-label-lg text-label-lg py-3.5 px-4 rounded-xl shadow-md flex items-center justify-between active:scale-[0.98] transition-all duration-200" onclick="triggerAddToCart(this)" type="button">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px] text-golden-nectar">shopping_bag</span>
+<span class="tracking-wider uppercase" id="btn-text">Add to Basket</span>
+</div>
+<span class="font-semibold text-golden-nectar" id="sticky-price">₹680</span>
+</button>
+</div>
+</div>
+<script>
+  let currentSlideIndex = 0;
+  let unitPriceNumber = 680;
+  let quantity = 1;
+
+  function goToSlide(index) {
+    currentSlideIndex = index;
+    const track = document.getElementById('carousel-track');
+    track.style.transform = `translateX(-${index * 100}%)`;
+
+    const dots = document.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.remove('w-2', 'bg-surface-container-highest');
+        dot.classList.add('w-6', 'bg-primary');
+      } else {
+        dot.classList.remove('w-6', 'bg-primary');
+        dot.classList.add('w-2', 'bg-surface-container-highest');
+      }
+    });
+  }
+
+  // Touch Swipe Gesture Handling for Carousel
+  const carouselEl = document.getElementById('carousel-section');
+  let startX = 0;
+  let endX = 0;
+
+  carouselEl.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+
+  carouselEl.addEventListener('touchend', (e) => {
+    endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0 && currentSlideIndex < 2) {
+        goToSlide(currentSlideIndex + 1);
+      } else if (diff < 0 && currentSlideIndex > 0) {
+        goToSlide(currentSlideIndex - 1);
+      }
+    }
+  });
+
+  function selectSize(size, priceFormatted, buttonEl) {
+    // Update active UI styles for buttons
+    const pills = document.querySelectorAll('.size-pill');
+    pills.forEach(pill => {
+      pill.classList.remove('bg-primary/10', 'text-primary');
+      pill.classList.add('bg-surface-container', 'text-on-surface');
+      const textEls = pill.querySelectorAll('span');
+      if (textEls[0]) textEls[0].classList.remove('text-primary');
+      if (textEls[1]) textEls[1].classList.remove('text-primary');
+    });
+
+    buttonEl.classList.remove('bg-surface-container', 'text-on-surface');
+    buttonEl.classList.add('bg-primary/10', 'text-primary');
+    const activeTextEls = buttonEl.querySelectorAll('span');
+    if (activeTextEls[0]) activeTextEls[0].classList.add('text-primary');
+    if (activeTextEls[1]) activeTextEls[1].classList.add('text-primary');
+
+    // Parse price integer
+    unitPriceNumber = parseInt(priceFormatted.replace(/[^0-9]/g, ''), 10);
+    document.getElementById('current-price').innerText = priceFormatted;
+    updateStickyPrice();
+  }
+
+  function adjustQuantity(delta) {
+    const newQty = quantity + delta;
+    if (newQty >= 1 && newQty <= 12) {
+      quantity = newQty;
+      document.getElementById('product-quantity').innerText = quantity;
+      updateStickyPrice();
+    }
+  }
+
+  function updateStickyPrice() {
+    const total = unitPriceNumber * quantity;
+    document.getElementById('sticky-price').innerText = '₹' + total.toLocaleString('en-IN');
+  }
+
+  function toggleAccordion(id) {
+    const content = document.getElementById(id);
+    const icon = document.getElementById(id + '-icon');
+    if (content.classList.contains('hidden')) {
+      content.classList.remove('hidden');
+      icon.style.transform = 'rotate(180deg)';
+    } else {
+      content.classList.add('hidden');
+      icon.style.transform = 'rotate(0deg)';
+    }
+  }
+
+  function triggerAddToCart(btn) {
+    const originalText = document.getElementById('btn-text').innerText;
+    document.getElementById('btn-text').innerText = 'Added to Cart ✓';
+    btn.classList.add('bg-tertiary');
+    setTimeout(() => {
+      document.getElementById('btn-text').innerText = originalText;
+      btn.classList.remove('bg-tertiary');
+    }, 1800);
+  }
+</script></main></body></html>

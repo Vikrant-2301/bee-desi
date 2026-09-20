@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-secondary-container":"#755d53","surface":"#fdf9f1","inverse-on-surface":"#f4f0e8","surface-variant":"#e6e2da","on-tertiary-fixed-variant":"#304e2f","inverse-surface":"#31302b","on-primary-fixed":"#2c1700","surface-container":"#f1ede6","on-secondary":"#ffffff","secondary":"#71594f","outline":"#857465","on-error-container":"#93000a","propolis-charcoal":"#1B1411","on-tertiary-container":"#f7fff1","honeycomb-cream":"#FDF9F2","beeswax-surface":"#F4ECE1","primary-fixed-dim":"#ffb86b","secondary-container":"#f9d9cc","on-surface-variant":"#524437","glass-frost":"rgba(255, 255, 255, 0.65)","amber-radiance":"#E89B2B","secondary-fixed-dim":"#dfc0b3","on-primary-fixed-variant":"#683d00","outline-variant":"#d7c3b2","background":"#fdf9f1","on-primary-container":"#fffbff","tertiary":"#456343","glass-border":"rgba(193, 125, 42, 0.18)","primary-fixed":"#ffdcbc","on-secondary-fixed-variant":"#584238","surface-container-high":"#ece8e0","flora-sage":"#6B846A","surface-container-highest":"#e6e2da","tertiary-fixed":"#c9ecc3","on-surface":"#1c1c17","surface-bright":"#fdf9f1","tertiary-fixed-dim":"#add0a8","on-primary":"#ffffff","primary":"#864f00","on-tertiary-fixed":"#042108","inverse-primary":"#ffb86b","surface-container-lowest":"#ffffff","surface-container-low":"#f7f3eb","surface-tint":"#895100","secondary-fixed":"#fcdcce","on-background":"#1c1c17","on-secondary-fixed":"#281810","surface-dim":"#dddad2","error-container":"#ffdad6","golden-nectar":"#F5BD47","on-error":"#ffffff","primary-container":"#a56612","on-tertiary":"#ffffff","tertiary-container":"#5d7c5a","error":"#ba1a1a"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-sm":"0.5rem","gutter-mobile":"1rem","space-xl":"3rem","margin-mobile":"1.25rem","gutter":"1.5rem","space-lg":"1.75rem","margin":"4rem","space-md":"1rem","space-xs":"0.25rem"},"fontFamily":{"body-lg":["DM Sans"],"headline-md":["EB Garamond"],"label-sm":["DM Sans"],"headline-sm":["EB Garamond"],"headline-lg-mobile":["EB Garamond"],"display-lg-mobile":["EB Garamond"],"body-md":["DM Sans"],"label-lg":["DM Sans"],"label-md":["DM Sans"],"headline-lg":["EB Garamond"],"title-lg":["DM Sans"],"display-lg":["EB Garamond"]},"fontSize":{"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"headline-md":["28px",{"lineHeight":"36px","fontWeight":"600"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.08em","fontWeight":"500"}],"headline-sm":["22px",{"lineHeight":"28px","fontWeight":"500"}],"headline-lg-mobile":["30px",{"lineHeight":"36px","letterSpacing":"-0.01em","fontWeight":"600"}],"display-lg-mobile":["38px",{"lineHeight":"44px","letterSpacing":"-0.01em","fontWeight":"500"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}],"label-lg":["13px",{"lineHeight":"18px","letterSpacing":"0.06em","fontWeight":"600"}],"label-md":["11px",{"lineHeight":"16px","letterSpacing":"0.12em","fontWeight":"600"}],"headline-lg":["40px",{"lineHeight":"48px","letterSpacing":"-0.015em","fontWeight":"600"}],"title-lg":["18px",{"lineHeight":"24px","letterSpacing":"0.01em","fontWeight":"600"}],"display-lg":["56px",{"lineHeight":"64px","letterSpacing":"-0.02em","fontWeight":"500"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(43,26,18,0.06)]"><div class="bg-propolis-charcoal text-honeycomb-cream py-1.5 px-margin-mobile lg:px-margin text-center font-label-md text-label-md tracking-wider flex items-center justify-center gap-2"><span class="material-symbols-outlined text-[14px] text-golden-nectar">local_shipping</span><span>Free shipping on orders above ₹999</span><span class="opacity-40">|</span><span>100% NMR Tested Raw Single-Flora Honey</span><span class="opacity-40">|</span><span>Direct from Indigenous Apiaries</span></div><div class="h-20 max-w-[1440px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-6"><div class="flex items-center gap-3 flex-shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1X5cpJbXlSnnQz-rxQbmwDoSvVPMIWPA8VLu9AQn696VcKeiIfDjBR-uxe9a3l7mXyRAN3uMGQEuf4zrIsdHPIo2HmMPzeu0WuHifTtJobO4OQ_8UjXhFxK7TgG9ZC2KqeWuWyd4vkXdeAgG8w-fbWvj5FcVZ4be9srMu4NNODxxKsxK5rbPR2cCn5NLlgO-UCSIyDNV8LI3wPa7ZFvZ22DiRBszhDQ9pOw9izfWjIGMFQtp5Fi4NTGBEzDamdvHstAjHPcTGUQww"/><div class="flex flex-col"><span class="font-headline-md text-headline-md leading-none text-propolis-charcoal tracking-tight">Bee Desi</span><span class="font-label-sm text-label-sm text-primary tracking-[0.18em] uppercase -mt-0.5">Artisanal Apiaries</span></div></div><nav class="hidden xl:flex items-center gap-6 h-full" data-active-classes="text-primary font-bold border-b border-primary"><a aria-current="page" class="transition-colors py-2 text-primary font-bold border-b border-primary" data-path="shop-all-honey" href="#">Shop All Honey</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="single-flora-collections" href="#">Single-Flora Collections</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="wild-comb-nectar" href="#">Wild Comb &amp; Nectar</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="purity-nmr-lab" href="#">Purity &amp; NMR Lab</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="our-heritage" href="#">Our Heritage</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors py-2" data-path="wholesale" href="#">Wholesale</a></nav><div class="flex items-center gap-4 flex-shrink-0"><div class="hidden md:flex items-center bg-surface-container-low px-3 py-1.5 rounded-lg text-on-surface-variant"><span class="material-symbols-outlined text-[18px] mr-2 text-outline">search</span><span class="font-body-md text-body-md text-outline mr-3">Search harvests, flora...</span><kbd class="font-label-sm text-label-sm bg-surface px-1.5 py-0.5 rounded text-outline shadow-sm">⌘K</kbd></div><div class="flex items-center gap-1 bg-surface-container-low px-2 py-1 rounded-lg text-on-surface-variant"><span class="font-label-md text-label-md text-on-surface font-semibold">INR ₹</span></div><button aria-label="Wishlist" class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">favorite</span><span class="absolute top-1 right-1 w-4 h-4 bg-primary text-on-primary rounded-full font-label-sm text-[9px] flex items-center justify-center font-bold">1</span></button><button class="flex items-center gap-2 bg-propolis-charcoal text-honeycomb-cream px-4 py-2 rounded-lg hover:bg-primary transition-colors shadow-[0_4px_16px_-2px_rgba(193,125,42,0.12)]" type="button"><span class="material-symbols-outlined text-[18px] text-golden-nectar">shopping_bag</span><span class="font-label-lg text-label-lg">Cart (2) - ₹1,480</span></button></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- Top Heritage Hero Showcase -->
+<section class="relative w-full bg-surface-container-low overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28">
+<!-- Subtle Golden Atmospheric Ambient Orbs -->
+<div class="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-golden-nectar/15 blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-0 left-1/4 w-[500px] h-[500px] rounded-full bg-amber-radiance/10 blur-3xl pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin">
+<!-- Top Brand Crest Badge with Attached Logo -->
+<div class="flex items-center gap-3 mb-8">
+<img alt="Bee Desi Brand Logo" class="h-14 w-auto object-contain drop-shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzCZStmNXVLM78FLNrkCoWyNCHS3Jb03S9sd5PUm5lTyVpsqyXCCX_FQNKEZu4tLFATdLI_lLnvH3QoCW5JPpFEMSDiaWZDbtyvZREErHsH9B7sV0QmTKqKX6Pk18n811cl8pyacRNKGQZAU6e9JtuUCmmJnpJlUjlMAsYUQaLFHUKc87WPoLuXRfDd4Bx5MsL3SlFRjRyW55eqmn_OD6V-rKXV1hgEHPdB7JJJohTzs7diacacEVXbRdHI5FfQZo1IA"/>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary font-bold">100% Raw • Single Terroir • Unheated</span>
+<span class="font-headline-sm text-headline-sm text-propolis-charcoal italic">Pure Wild sustenance from Indian Reserves</span>
+</div>
+</div>
+<!-- Main Split Hero Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+<!-- Editorial Text Column (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col items-start gap-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface shadow-sm backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface-variant font-semibold">Spring 2026 Kashmiri Acacia Harvest Now Bottled</span>
+</div>
+<h1 class="font-display-lg text-display-lg-mobile lg:text-display-lg text-propolis-charcoal leading-[1.08] tracking-tight">
+            Raw, Wild &amp; Single-Flora Nectar from India’s Ancient Terroirs
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+            Harvested with solemn reverence for indigenous bees. Unheated, unpasteurized, and rigorously NMR certified in Germany for 100% molecular purity. Zero synthetic corn syrup, inverted sugars, or commercial blending.
+          </p>
+<!-- Dual Action CTA -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="bg-primary text-on-primary px-8 py-3.5 rounded-lg font-label-lg text-label-lg tracking-wider uppercase hover:bg-amber-radiance transition-colors shadow-md flex items-center gap-2" href="#flora-spectrum">
+<span>Explore First Harvest Batches</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="bg-surface text-propolis-charcoal px-7 py-3.5 rounded-lg font-label-lg text-label-lg tracking-wider uppercase hover:bg-beeswax-surface transition-colors shadow-sm flex items-center gap-2" href="#nmr-guarantee">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span>View NMR Lab Reports</span>
+</a>
+</div>
+<!-- Micro Metrology Bar -->
+<div class="grid grid-cols-3 gap-6 pt-6 w-full max-w-lg">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-propolis-charcoal">18.4 DN</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Diastase Activity (Live Enzymes)</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-propolis-charcoal">&lt;17.2%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Natural Low Moisture</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-propolis-charcoal">C4 Neg</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Zero Added Syrups Tested</span>
+</div>
+</div>
+</div>
+<!-- Jar Staging Mosaic (5 Cols) -->
+<div class="lg:col-span-5 relative">
+<div class="relative bg-surface rounded-xl p-6 shadow-xl overflow-hidden flex flex-col items-center">
+<!-- Background Glow & Honeycomb Vector Deco -->
+<div class="absolute inset-0 bg-gradient-to-tr from-beeswax-surface via-surface to-surface-container opacity-60"></div>
+<!-- Origin Floating Badges -->
+<div class="w-full flex items-center justify-between z-10 mb-4">
+<span class="bg-surface/90 backdrop-blur-md px-3 py-1 rounded-full text-primary font-label-sm text-label-sm font-bold shadow-sm">
+                Single Origin • Terroir Batch
+              </span>
+<span class="font-label-sm text-label-sm text-outline font-semibold tracking-wider">
+                BATCH #B-2026/04
+              </span>
+</div>
+<!-- Main Feature Jar Image -->
+<div class="relative z-10 w-full aspect-[4/5] rounded-lg overflow-hidden shadow-inner flex items-center justify-center bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A luxurious hexagonal heavy glass jar filled with luminous golden amber raw honey, natural wooden honey dipper resting on the jar rim, soft morning sunlight illuminating pure micro bubbles and crystallization textures, artisanal craft paper tag tied with natural jute twine, warm neutral studio setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX-FjUWJr1MgkR4ZWmcjzmI766Krlt_kIIsdyCWNwscF33BUaIXi1NsQm2kjOX25ocGAhEKWKoBEOo0wOKBTIjyBjLgDKyfY87a3iLa6oJ1OFOymBf6w4KqvMgssV25qEac_29E0WFk9gWzqY8V7FEe8trabq8t7OLGhlifkpedBRlXCmJDcf6UT_dM-bDd2oc4sDW4ubOU5ABeWO-vANeT-f6xhu87YmDYgQEd_TfRTySEnlNHmV4"/>
+<!-- Floating Verification Tag -->
+<div class="absolute bottom-4 left-4 right-4 bg-propolis-charcoal/90 backdrop-blur-md text-honeycomb-cream p-3 rounded-lg flex items-center justify-between shadow-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-golden-nectar text-[22px]">science</span>
+<div class="flex flex-col text-left">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-golden-nectar font-bold">Intertek NMR Tested</span>
+<span class="font-body-md text-[11px] text-surface-variant">Purity Score: 100% Authentic Floral Nectar</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary-fixed text-[20px]">check_circle</span>
+</div>
+</div>
+<!-- Staged Secondary Thumbnails -->
+<div class="grid grid-cols-3 gap-3 w-full mt-4 z-10">
+<div class="bg-surface-container-low p-2 rounded-lg text-center shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Elevation</span>
+<span class="font-title-lg text-[13px] text-propolis-charcoal font-bold">1,850m MSL</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg text-center shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Bees</span>
+<span class="font-title-lg text-[13px] text-propolis-charcoal font-bold">Apis Cerana</span>
+</div>
+<div class="bg-surface-container-low p-2 rounded-lg text-center shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant block">Harvest</span>
+<span class="font-title-lg text-[13px] text-propolis-charcoal font-bold">Cold Settled</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust Ticker Bar -->
+<div class="mt-14 w-full bg-beeswax-surface py-4 shadow-sm">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin flex flex-wrap items-center justify-between gap-6 text-on-surface-variant font-label-md text-label-md tracking-wider uppercase">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">water_drop</span>
+<span>100% Raw &amp; Unfiltered</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span>Zero Added Sugars / C4 Negative</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">handshake</span>
+<span>Direct Fair-Pay Apiary Sourcing</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">thermostat</span>
+<span>Cold-Extracted Heritage Methods</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">recycling</span>
+<span>Plastic-Free Recyclable Glass</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 2. Terroir & Flora Spectrum (Interactive Flavor Matrix / Grid) -->
+<section class="w-full py-20 bg-surface" id="flora-spectrum">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+<div class="max-w-2xl">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-[20px]">spa</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.16em] text-primary font-bold">Botanical Diversity</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-propolis-charcoal">
+            Terroir In Every Drop — Single-Flora Collections
+          </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-3">
+            Unlike mass blended supermarket honeys, each Bee Desi harvest captures the unique blossom profile, microclimate minerals, and distinctive viscosity of its specific regional origin.
+          </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 rounded-full bg-propolis-charcoal text-honeycomb-cream font-label-sm text-label-sm uppercase tracking-wider font-semibold shadow-sm hover:bg-primary transition-colors" id="filter-all">All Terroirs</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider font-semibold hover:bg-surface-container-high transition-colors" id="filter-forest">Wild Forests</button>
+<button class="px-4 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider font-semibold hover:bg-surface-container-high transition-colors" id="filter-himalayan">Alpine Valleys</button>
+</div>
+</div>
+<!-- Flora Product Matrix (4 Columns) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Card 1: Kashmir Acacia -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-low mb-5 flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Kashmir Acacia white liquid honey in artisanal tall glass jar with minimal label, pale straw crystal clear amber hue, delicate white acacia floral blossoms placed around base on warm travertine stone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqezJecsg3-9PiRVTdZlbwjVXoTg-vR7rM_6aSPFWytZ6uLUFpoyrGgiDqhqWKSmwL5tPy4cJbuoC71XoTrSgmOTLKzq7Ies3C9wy6YebzlNGm1NLd5TeZCR6-hnLZi7bSQ8pnxo8uNBa7k3YYPcqsUi5IMbSzmr0WXxDoc8rSKgzBGYzBrJueFgy32WJi1670JZLTjQQ-odViO5V2AI_b0TFvVSd18ovSQaue22KR4ETYSNrJNjN2"/>
+<span class="absolute top-3 left-3 bg-surface/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm font-semibold text-primary shadow-sm">
+                Kashmir Valley
+              </span>
+<span class="absolute top-3 right-3 bg-golden-nectar/90 text-propolis-charcoal px-2 py-0.5 rounded font-label-sm text-[10px] font-bold">
+                May Harvest
+              </span>
+</div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3 h-3 rounded-full bg-[#FCE38A] shadow-inner"></span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Pale Golden • Delicate</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-propolis-charcoal group-hover:text-primary transition-colors">
+              Himalayan White Sidr &amp; Acacia
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-relaxed">
+              Mild, luminous floral with a spun-silk finish. Delicate notes of high-altitude apple blossom, white clover, and vanilla bean.
+            </p>
+<!-- Sensory Meters -->
+<div class="mt-4 pt-4 bg-surface-container-low/50 p-3 rounded-lg space-y-2">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Sweetness</span>
+<div class="flex gap-1">
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Viscosity</span>
+<div class="flex gap-1">
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">350g Glass Jar</span>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-bold">₹890</span>
+</div>
+<button class="bg-propolis-charcoal text-honeycomb-cream p-2.5 rounded-lg hover:bg-primary transition-colors shadow-sm flex items-center gap-1.5 px-3">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="font-label-md text-label-md">Add</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Sundarbans Mangrove -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-low mb-5 flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Deep copper dark Sundarbans wild mangrove honey in heavy glass bottle, natural honeycomb chunk floating inside, dark moody lighting, rustic wooden backdrop with mangrove leaves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoDJT1cevQC7lSiFwcVSbtrF7lxbUerCmkvLjjDV0qhNLcHRRkJ6W-74qdcTDjmIVq4u8RIUYDYBRzpjJ8nRE56nKm5GXpl7TtIY3gu_c75QViSjMsFZdGrwfGOFXMALDr9LREcG8N_vJI2E_ZWJpZrF6dPSYulMVpJyi-JZotTWymv0rECFkvlAIWA9G195fdlnAbXZXdEG-nNYLk_lq3JcPYti90h2c3Y4SYKxByiAXdVZuak9eO"/>
+<span class="absolute top-3 left-3 bg-surface/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm font-semibold text-primary shadow-sm">
+                Bengal Mangroves
+              </span>
+<span class="absolute top-3 right-3 bg-amber-radiance text-on-primary px-2 py-0.5 rounded font-label-sm text-[10px] font-bold">
+                Wild Harvest
+              </span>
+</div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3 h-3 rounded-full bg-[#A8581E] shadow-inner"></span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Dark Copper • Smoky</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-propolis-charcoal group-hover:text-primary transition-colors">
+              Sunderbans Wild Mangrove
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-relaxed">
+              Robust, slightly salty and mineral rich with a deep caramel molasses finish. High natural bio-active enzyme profile.
+            </p>
+<!-- Sensory Meters -->
+<div class="mt-4 pt-4 bg-surface-container-low/50 p-3 rounded-lg space-y-2">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Sweetness</span>
+<div class="flex gap-1">
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Viscosity</span>
+<div class="flex gap-1">
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">350g Glass Jar</span>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-bold">₹760</span>
+</div>
+<button class="bg-propolis-charcoal text-honeycomb-cream p-2.5 rounded-lg hover:bg-primary transition-colors shadow-sm flex items-center gap-1.5 px-3">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="font-label-md text-label-md">Add</span>
+</button>
+</div>
+</div>
+<!-- Card 3: Wild Raw Jamun -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-low mb-5 flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Wild raw Jamun blossom honey in elegant glass container, dark reddish brown hue, rustic clay bowl with Indian black plums nearby, soft warm natural kitchen light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjhrBzxFMXekcdou-YWfKr0L3ONnbzwUjvSQG8i6yM2dUpifg3Deps4eWgbYnT5aBlPTvYoDdCAdaRRWBhzcCWRceGGlbFc4eAQIOp8doMaKuBE-pas9ih64P7V__zE-nvIjW7px5wo78U2ItcATqFkDeH9_YuWAVIW5dWuuk91Dka-PDHNYJ3oI-47--ka4q5msvWJK2ZVsYNA0KsRfnB62nTzbADS6eG7GR_8RjTR-w4Lz4-11hN"/>
+<span class="absolute top-3 left-3 bg-surface/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm font-semibold text-primary shadow-sm">
+                Madhya Pradesh
+              </span>
+<span class="absolute top-3 right-3 bg-tertiary text-on-tertiary px-2 py-0.5 rounded font-label-sm text-[10px] font-bold">
+                Low GI
+              </span>
+</div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3 h-3 rounded-full bg-[#5E2B2B] shadow-inner"></span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Ruby Amber • Earthy</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-propolis-charcoal group-hover:text-primary transition-colors">
+              Wild Raw Jamun Blossom
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-relaxed">
+              Subtly astringent-sweet herbal finish from dense forest groves. Favored in Ayurveda for natural low glycemic index support.
+            </p>
+<!-- Sensory Meters -->
+<div class="mt-4 pt-4 bg-surface-container-low/50 p-3 rounded-lg space-y-2">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Sweetness</span>
+<div class="flex gap-1">
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Viscosity</span>
+<div class="flex gap-1">
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">350g Glass Jar</span>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-bold">₹680</span>
+</div>
+<button class="bg-propolis-charcoal text-honeycomb-cream p-2.5 rounded-lg hover:bg-primary transition-colors shadow-sm flex items-center gap-1.5 px-3">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="font-label-md text-label-md">Add</span>
+</button>
+</div>
+</div>
+<!-- Card 4: Mustard Blossom Creamed -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="relative w-full aspect-[3/4] rounded-lg overflow-hidden bg-surface-container-low mb-5 flex items-center justify-center">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Naturally crystallized opaque creamed honey in short wide mouth glass pot, buttery texture being lifted by wooden paddle, warm morning kitchen setting with yellow mustard field flowers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5lQ2dP3ZGrLtfAM9Y_ajerEbjs5Qc6x1RF0uppPe_NpmtUc2DUPfUO7dO7mW2G0sy8ANySZF_eo0mW-9qP5tkiIFFkqsStFOHT8s5hTOUwrYdnNOotRldKFD72Or07VyQwS1lZHKwY6T2MI3iVwQd5dT_HdPT_R1Qa2Hm8Z6vdB0BP0M57GM4hlqgNFy1LQFpu1sCEOJWRY3NrWxwsT0CQMdyyMWgHFgUL2GtZS4OZ5ZBU850vYog"/>
+<span class="absolute top-3 left-3 bg-surface/90 backdrop-blur-md px-2.5 py-1 rounded-full font-label-sm text-label-sm font-semibold text-primary shadow-sm">
+                Rajasthan Plains
+              </span>
+<span class="absolute top-3 right-3 bg-surface-variant text-on-surface-variant px-2 py-0.5 rounded font-label-sm text-[10px] font-bold">
+                Spreadable
+              </span>
+</div>
+<div class="flex items-center gap-2 mb-1.5">
+<span class="w-3 h-3 rounded-full bg-[#FFF2A3] shadow-inner"></span>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Butter Cream • Velvety</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-propolis-charcoal group-hover:text-primary transition-colors">
+              Mustard Blossom Creamed
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 leading-relaxed">
+              Naturally micro-crystallized into a luscious whipped butter texture. Warm comforting floral notes, ideal for crusty breads.
+            </p>
+<!-- Sensory Meters -->
+<div class="mt-4 pt-4 bg-surface-container-low/50 p-3 rounded-lg space-y-2">
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Sweetness</span>
+<div class="flex gap-1">
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-surface-container-highest"></span>
+</div>
+</div>
+<div class="flex items-center justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>Viscosity</span>
+<div class="flex gap-1">
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+<span class="w-2.5 h-1.5 rounded-full bg-primary"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">350g Glass Jar</span>
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-bold">₹590</span>
+</div>
+<button class="bg-propolis-charcoal text-honeycomb-cream p-2.5 rounded-lg hover:bg-primary transition-colors shadow-sm flex items-center gap-1.5 px-3">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span class="font-label-md text-label-md">Add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. The Purity Standard: NMR Testing Guarantee & Interactive Batch Lookup -->
+<section class="w-full py-20 bg-surface-container-high relative overflow-hidden" id="nmr-guarantee">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Column: Scientific Credibility -->
+<div class="lg:col-span-6 flex flex-col items-start gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">biotech</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.18em] text-primary font-bold">Uncompromising Science</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-propolis-charcoal leading-tight">
+            The Nuclear Magnetic Resonance (NMR) Guarantee
+          </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            Over 80% of commercial honeys sold today are heat-processed and adulterated with inverted rice or beet syrups to pass basic tests. Bee Desi subjects every single extraction to high-field NMR profiling in Bruker laboratories to map its exact molecular fingerprint.
+          </p>
+<!-- Interactive Certificate Batch Lookup Tool -->
+<div class="w-full bg-surface rounded-xl p-6 shadow-md">
+<span class="font-title-lg text-title-lg text-propolis-charcoal block mb-2 font-semibold">Verify Your Harvest Batch Certificate</span>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+              Enter the batch code laser-engraved on the bottom of your jar to review the authentic spectroscopy report.
+            </p>
+<div class="flex flex-col sm:flex-row gap-3">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">qr_code_scanner</span>
+<input class="w-full bg-surface-container-low pl-10 pr-4 py-2.5 rounded-lg text-on-surface font-body-md text-body-md outline-none focus:bg-surface focus:shadow-inner uppercase tracking-wider" id="batch-input" type="text" value="BD-JAMUN-2026"/>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md uppercase tracking-wider font-semibold hover:bg-amber-radiance transition-colors whitespace-nowrap shadow-sm" id="batch-verify-btn" type="button">
+                Verify Certificate
+              </button>
+</div>
+<!-- Lookup Result Simulation Panel -->
+<div class="mt-4 p-4 rounded-lg bg-honeycomb-cream border-l-4 border-tertiary flex items-start justify-between" id="batch-result">
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5 text-tertiary font-bold font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Batch #BD-JAMUN-2026 Authenticated</span>
+</div>
+<span class="font-body-md text-[13px] text-on-surface-variant mt-1">
+                  Origin: Balaghat Forest, MP • Harvest: March 2026 • C4 Sugar: 0.0% • Diastase: 21.2 DN
+                </span>
+</div>
+<a class="text-primary font-label-sm text-label-sm font-bold underline hover:text-propolis-charcoal" href="#">Download PDF</a>
+</div>
+</div>
+</div>
+<!-- Right Column: Comparative Infographic / Table -->
+<div class="lg:col-span-6 bg-surface rounded-xl p-8 shadow-xl">
+<span class="font-headline-sm text-headline-sm text-propolis-charcoal block mb-6">
+            Commercial Processed Honey vs. Bee Desi Artisanal
+          </span>
+<div class="space-y-4">
+<!-- Row 1 -->
+<div class="grid grid-cols-12 gap-4 pb-4 border-b border-surface-container-highest">
+<div class="col-span-4 font-label-md text-label-md text-outline uppercase tracking-wider">Parameter</div>
+<div class="col-span-4 font-label-md text-label-md text-error uppercase tracking-wider">Supermarket Brands</div>
+<div class="col-span-4 font-label-md text-label-md text-tertiary font-bold uppercase tracking-wider">Bee Desi Nectar</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-12 gap-4 py-2 items-center">
+<div class="col-span-4 font-body-md text-body-md font-semibold text-propolis-charcoal">Heat &amp; Filtration</div>
+<div class="col-span-4 font-body-md text-body-md text-on-surface-variant">Heated to 70°C+, ultra-filtered</div>
+<div class="col-span-4 font-body-md text-body-md text-tertiary font-semibold">Never heated (&lt;38°C), coarse mesh</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-12 gap-4 py-2 items-center bg-surface-container-low/60 p-2 rounded-lg">
+<div class="col-span-4 font-body-md text-body-md font-semibold text-propolis-charcoal">Living Enzymes</div>
+<div class="col-span-4 font-body-md text-body-md text-on-surface-variant">Denatured &amp; destroyed</div>
+<div class="col-span-4 font-body-md text-body-md text-tertiary font-semibold">Active Diastase &amp; Invertase</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-12 gap-4 py-2 items-center">
+<div class="col-span-4 font-body-md text-body-md font-semibold text-propolis-charcoal">Pollen Grains</div>
+<div class="col-span-4 font-body-md text-body-md text-on-surface-variant">Stripped to hide true country origin</div>
+<div class="col-span-4 font-body-md text-body-md text-tertiary font-semibold">100% Retained indigenous pollen</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-12 gap-4 py-2 items-center bg-surface-container-low/60 p-2 rounded-lg">
+<div class="col-span-4 font-body-md text-body-md font-semibold text-propolis-charcoal">C4 Sugar Syrups</div>
+<div class="col-span-4 font-body-md text-body-md text-error">Frequently adulterated</div>
+<div class="col-span-4 font-body-md text-body-md text-tertiary font-semibold">0.0% Molecular NMR Negative</div>
+</div>
+<!-- Row 6 -->
+<div class="grid grid-cols-12 gap-4 py-2 items-center">
+<div class="col-span-4 font-body-md text-body-md font-semibold text-propolis-charcoal">Vessel</div>
+<div class="col-span-4 font-body-md text-body-md text-on-surface-variant">Squeeze plastic (leaches microplastics)</div>
+<div class="col-span-4 font-body-md text-body-md text-tertiary font-semibold">Heavy lead-free UV amber glass</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Curated Bestsellers & Tasting Bundles -->
+<section class="w-full py-20 bg-surface">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin">
+<!-- Section Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.18em] text-primary font-bold">The Connoisseur’s Cellar</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-propolis-charcoal mt-1">
+            Curated Harvests &amp; Tasting Flights
+          </h2>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-golden-nectar text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-md text-label-md font-bold text-propolis-charcoal">4.9 / 5.0 Rating</span>
+<span class="text-outline text-body-md">(From 1,420+ Certified Patrons)</span>
+</div>
+</div>
+<!-- Main Showcase Feature Row: Spotlight Bundle + 2 Complementary Jars -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Large Feature Box: The Connoisseur's Flight (7 Cols) -->
+<div class="lg:col-span-7 bg-surface-container-low rounded-2xl p-8 lg:p-10 shadow-md flex flex-col md:flex-row gap-8 items-center relative overflow-hidden">
+<span class="absolute top-6 left-6 bg-propolis-charcoal text-golden-nectar px-3 py-1 rounded-full font-label-sm text-label-sm font-bold uppercase tracking-wider shadow-sm z-10">
+            Limited Batch • Only 140 Sets
+          </span>
+<div class="w-full md:w-1/2 aspect-square rounded-xl overflow-hidden bg-surface shadow-md relative">
+<img class="w-full h-full object-cover" data-alt="Artisanal luxury gift box open showing three distinct amber and dark honey jars alongside a beautifully turned sheesham hardwood honey dipper, soft cotton shredded nest, botanical dried flowers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwh4y-jc7nxiBcCpTqfDJeKGNSpRXLENU_gwl474P0zG4vMQtzHeJzoxUzYNkNSzBPhy_OqSAX3xaWVdwvAJQf0uaJE8C3TDzCabOMD5XqZADS_SlPxO0J_SLwloNF5Yuj2VcO8Drc1wbiA64zsog8lOmWl0DOUARwY8GaLhfWNCM4UhTLU8VHBO325kzRiPtqgR3aK7V1yTh694N4nmDC9KCtjKCSdYHkJeA2AkY7v3kzBmsjBhMc"/>
+</div>
+<div class="w-full md:w-1/2 flex flex-col justify-between h-full">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-semibold">Tasting Collection</span>
+<h3 class="font-headline-md text-headline-md text-propolis-charcoal mt-1">
+                The Connoisseur’s Terroir Flight
+              </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-3 leading-relaxed">
+                Includes 3 rare regional harvests (Himalayan Sidr, Bengal Mangrove, MP Jamun) + 1 handcrafted Sheesham wood honey dripper.
+              </p>
+<div class="flex items-center gap-4 mt-4">
+<div class="flex items-center text-golden-nectar">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">128 Curated Reviews</span>
+</div>
+</div>
+<div class="mt-6 pt-6 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm line-through text-outline">₹2,490</span>
+<span class="font-headline-sm text-headline-sm text-propolis-charcoal font-bold">₹1,950</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label-md text-label-md uppercase tracking-wider font-semibold hover:bg-amber-radiance transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+<span>Claim Flight</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Products (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Product Item 1: Raw Honeycomb Cut -->
+<div class="bg-surface rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow flex items-center gap-5">
+<div class="w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Fresh natural raw honeycomb slice cut directly from hive showing translucent amber cells dripping thick raw honey on handmade textured ceramic dish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjQcomsh9clQIlx11q-kVOpb9y4jPYfhG6QGVyz1EMr7eY5ezO_ES_fbuuYY_eqtJz8lFdufAH7hISXHmi44Y1w2H86wqIx54MmojDmuoRkFL8k-ZYiOaLiuty-s24EeyqwYY1iV54Js0KV4yra0VAmugUO_dJgJYM_xRhVuuZVro_lIRvxOV6AaeOpUjk-Q4iSsvqMgfPInPTQobWtfKVFtZzlKu3toKrIkycLQR3mm0FWqZFQpV0"/>
+</div>
+<div class="flex-1 min-w-0">
+<span class="font-label-sm text-label-sm text-primary font-bold uppercase tracking-wider">Unfiltered Hive Cut</span>
+<h4 class="font-title-lg text-title-lg text-propolis-charcoal truncate">Wild Forest Honeycomb Slab</h4>
+<span class="font-body-md text-body-md text-on-surface-variant block mt-0.5">250g Pure Edible Beeswax Comb</span>
+<div class="flex items-center justify-between mt-3">
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-bold">₹750</span>
+<button class="bg-surface-container-high text-propolis-charcoal px-3 py-1.5 rounded font-label-sm text-label-sm font-bold uppercase hover:bg-primary hover:text-on-primary transition-colors">
+                  Add To Bag
+                </button>
+</div>
+</div>
+</div>
+<!-- Product Item 2: Himalayan White Raw Pollen -->
+<div class="bg-surface rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow flex items-center gap-5">
+<div class="w-28 h-28 flex-shrink-0 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Glass jar of multi-colored golden raw bee pollen granules, small wooden spoon filled with nutrient rich yellow pollen pearls, clean organic morning wellness concept" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvEGotxxPTbneUBtRgqguK8CmH6L_Ylwt8t7hTJPaZJsZQbOBgaJ5XyZheqlWBv5eXs4O0eDLTXshHSz2Ct4fu2BXnDLANS9zdYbm3eVaYAmeLS67Qa3d1sKUgLzKp25JYAND7vqIat0Gr68v4jB8iF1l9MtFbnGurhvpCMBy15Dc6Qa_DAGl6b-bDU9nCoqwRd__3-P6zfNS2LJlkyGJRkZ9D8piFiVGtBJGtaJ9Uyw61RiCZCVwf"/>
+</div>
+<div class="flex-1 min-w-0">
+<span class="font-label-sm text-label-sm text-tertiary font-bold uppercase tracking-wider">Bio-Active Superfood</span>
+<h4 class="font-title-lg text-title-lg text-propolis-charcoal truncate">Raw Alpine Bee Pollen Pearls</h4>
+<span class="font-body-md text-body-md text-on-surface-variant block mt-0.5">150g Vitamin &amp; Protein Dense</span>
+<div class="flex items-center justify-between mt-3">
+<span class="font-title-lg text-title-lg text-propolis-charcoal font-bold">₹820</span>
+<button class="bg-surface-container-high text-propolis-charcoal px-3 py-1.5 rounded font-label-sm text-label-sm font-bold uppercase hover:bg-primary hover:text-on-primary transition-colors">
+                  Add To Bag
+                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Honeycomb Harvest & Indigenous Beekeeping Heritage -->
+<section class="w-full py-24 bg-surface-container-low relative">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Storytelling Visual Composition (6 Cols) -->
+<div class="lg:col-span-6 relative">
+<div class="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Traditional Indian indigenous beekeeper tenderly inspecting a wooden hive frame covered with Apis Cerana honeybees in a lush misty Himalayan mountain forest valley during morning golden hour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEeWlUyod7iF_dbhX9zM4grLp_iXhRwd1tStnUrgZ5rNnvOjCgv4Iu2kWhozXEuZpVmhD1sB7NDLrJQAF-9tugY5GkCl4jA_W5aoP4h8zp-53q1eSFA3pMJxg72hHFfEoI5ezOE133nevM6uu_-gX9u86_4PDQvHgF5zDEsczKMX9GYeORZIenaeoExvEYiJtEm7qLdb-TLtwgbBH18KIdldlRyFGyNhh2WPkFcsjsqsViruTqqNJ4"/>
+</div>
+<!-- Overlapping Story Quote Card -->
+<div class="absolute -bottom-8 right-6 bg-surface p-6 rounded-xl shadow-xl max-w-sm hidden sm:block">
+<div class="flex items-center gap-2 text-primary mb-2">
+<span class="material-symbols-outlined text-[18px]">nature_people</span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider">Tribal Forest Keepers</span>
+</div>
+<p class="font-headline-sm text-[16px] leading-snug text-propolis-charcoal italic">
+              "We harvest only the outer capped honey combs, never touching the brood nest. The bees remain healthy, and the forest flourishes."
+            </p>
+<span class="font-label-sm text-label-sm text-outline block mt-2">— Sonam Dorje, Master Beekeeper, Ladakh Terroir</span>
+</div>
+</div>
+<!-- Pillar Content (6 Cols) -->
+<div class="lg:col-span-6 flex flex-col items-start gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">pixel_4_4xl_4a_5_5a_5g</span>
+<span class="font-label-sm text-label-sm uppercase tracking-[0.18em] text-primary font-bold">The Indigenous Covenant</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-propolis-charcoal leading-tight">
+            Protecting Apis Cerana Indica &amp; Ancient Forest Commons
+          </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+            Commercial apiculture pushes invasive foreign species and migratory stressors. At Bee Desi, our hives are rooted alongside indigenous multi-generational gatherers who honor centuries-old non-violent harvesting laws.
+          </p>
+<!-- 3 Ethical Pillars -->
+<div class="space-y-4 w-full mt-2">
+<div class="bg-surface p-4 rounded-xl flex items-start gap-4 shadow-sm">
+<div class="w-10 h-10 rounded-full bg-honeycomb-cream flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">cruelty_free</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-[16px] text-propolis-charcoal font-semibold">40%+ Hive Retention Rule</span>
+<span class="font-body-md text-body-md text-on-surface-variant mt-0.5">We leave over 40% of seasonal stores so colonies winter naturally without artificial sugar water feeding.</span>
+</div>
+</div>
+<div class="bg-surface p-4 rounded-xl flex items-start gap-4 shadow-sm">
+<div class="w-10 h-10 rounded-full bg-honeycomb-cream flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">currency_rupee</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-[16px] text-propolis-charcoal font-semibold">Guaranteed 2.5x Fair Wages</span>
+<span class="font-body-md text-body-md text-on-surface-variant mt-0.5">Forest-dwelling tribal gatherers receive immediate above-market payment directly into local cooperative trusts.</span>
+</div>
+</div>
+<div class="bg-surface p-4 rounded-xl flex items-start gap-4 shadow-sm">
+<div class="w-10 h-10 rounded-full bg-honeycomb-cream flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">sanitizer</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-[16px] text-propolis-charcoal font-semibold">Infinitely Recyclable Amber Glass</span>
+<span class="font-body-md text-body-md text-on-surface-variant mt-0.5">Zero plastic pouches or bottles. Our jars block degradation from sunlight and can be returned for refill credits.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Customer Love & Chef Endorsements -->
+<section class="w-full py-20 bg-surface">
+<div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary font-bold">Culinary &amp; Wellness Accolades</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-propolis-charcoal mt-2">
+          Praised by Gourmet Chefs, Herbalists &amp; Mindful Patrons
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-3">
+          Discover why India’s finest culinary pioneers and wellness practitioners choose Bee Desi for daily nourishment.
+        </p>
+</div>
+<!-- Testimonials Mosaic -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Review 1 -->
+<div class="bg-surface-container-low rounded-xl p-8 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center text-golden-nectar mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-headline-sm text-[18px] leading-relaxed text-propolis-charcoal italic">
+              "The Kashmir Acacia has an ethereal translucence and lingering jasmine floral note. We use it across our dessert tasting menu in New Delhi — unmatched purity."
+            </p>
+</div>
+<div class="mt-6 pt-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center font-bold text-on-primary-container font-headline-sm">
+              AK
+            </div>
+<div class="flex flex-col">
+<span class="font-title-lg text-[14px] text-propolis-charcoal font-bold">Chef Ananya Kapoor</span>
+<span class="font-label-sm text-label-sm text-outline">Executive Pastry Chef, Delhi</span>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container-low rounded-xl p-8 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center text-golden-nectar mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-headline-sm text-[18px] leading-relaxed text-propolis-charcoal italic">
+              "As an Ayurvedic Vaidya, authentic raw unprocessed honey is an indispensable Anupana (carrier). Bee Desi's raw Jamun has the genuine natural astringency required for optimal digestion."
+            </p>
+</div>
+<div class="mt-6 pt-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center font-bold text-on-tertiary-container font-headline-sm">
+              VR
+            </div>
+<div class="flex flex-col">
+<span class="font-title-lg text-[14px] text-propolis-charcoal font-bold">Dr. Vikramaditya Rao</span>
+<span class="font-label-sm text-label-sm text-outline">Ayurvedic Physician &amp; Researcher</span>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="bg-surface-container-low rounded-xl p-8 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center text-golden-nectar mb-4">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-headline-sm text-[18px] leading-relaxed text-propolis-charcoal italic">
+              "Seeing the authentic German NMR spectroscopy test results by entering my batch ID gave me absolute peace of mind. It crystallizes softly in winter — proof of true raw honey!"
+            </p>
+</div>
+<div class="mt-6 pt-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container font-headline-sm">
+              MS
+            </div>
+<div class="flex flex-col">
+<span class="font-title-lg text-[14px] text-propolis-charcoal font-bold">Meera Subramanian</span>
+<span class="font-label-sm text-label-sm text-outline">Verified Patron • Bangalore</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Social & Ritual Gallery Matrix -->
+<div class="mt-16">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold">The Morning Honey Ritual #BeeDesiMoments</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary font-bold hover:underline" href="#">Follow Our Apiaries @BeeDesiHoney</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="aspect-square rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="Artisanal sourdough toast drizzled with thick golden amber honey, toasted walnuts, fresh figs, and sprigs of rosemary on a ceramic breakfast plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_qBl2ucLKSOeJ5J3rzrxkdQhAxC7_hBshxvs40Flsyh5MCcaYJ9q7rUp8lbp0X2l6WaHcZwYn9Lq45dKqU1nsCyYVojDHPJauqI18SgMg32Y3Q2cyxtN_NgKdMqNTe4Xel9yozTF-EJFOSwkVOw0abv7IDPV0b9R2UKJjysnH8YMVDZqzwbAaw0woJ_B5hIXaTnytfrld8eh7YYbTJ7-NSrvvl4Z7Hf3Kj-Hiko6DPhTCxmiq86-c"/>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="Clear glass teacup with fresh herbal chamomile flowers, golden raw honey swirling into steaming hot water with wooden honey dipper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjBXERRrq43ubEST9nLCibIa4Fm8O63P1VFa9i9qO4OdXpunOdNyx3ZU0nb04g-wMOp3J-FPB1pIvIf7S7_BsjNqKQReQPKzKkJ0msj4W2zpgUPCIJEdJMPMF0npCR6GeKjSEACiIfZWISGeV9qaB0eHe7MXzl9_E79S85MreVuc0ayp_A0YhTnKwH-m4uo8HBe-YgrAUYg744msLlpz58494uynhmHKwaapx0M_8pK5WTGShJMRaR"/>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="Ceramic bowl with natural probiotic curd yoghurt topped with chia seeds, wild raw Jamun honey swirl, and crushed mountain almonds" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGdERcPriHdwR3UWJ1VAbwhMdqzLyhJwmTdNkVRvDmQGOl_hSo-p1hY-KI5ukjDwj8VMit8MJQDLyS3X1Zwnlw4EUJT2LJpQp4FBYv2dZmYWzDRB5iJg1kXu_jGDfNkI5--ZKi40Sc9wjpK5IQQtkc4miQEN-QBCOF4xbCQDcqFEcGDLGfer0lEyg6Ff6Hc0-NF_tgBm1lF8Si77PyDO8LEIlQD6-ev0Ip8_-5zouCU9GcyCD8_P3Q"/>
+</div>
+<div class="aspect-square rounded-xl overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="Bee Desi honey jars arranged neatly on an open wooden pantry shelf alongside handcrafted pottery in an aesthetic warm kitchen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrBI_a7Frw5wQNmAWKSFbzLmGsxtL8QsEdYk7nSYE590MgPogd5mFZVV2RqnavdyYXEXT7AQe0wYJ62JafnWBfpX7fx8KL7FEmXxruaf7vWZYFuaqE32AX6sqnkdwmH9mlrW3AqR-lAUe0K07bczfRAjwIiypLJceU8Zk77PU_rOO7F_fKIrKrv7IHcuLT9qRk8bOsbcJNgXVA-i3a89UThmURGlBRxSgFVypW_uWD8OjxNha6GXvR"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Script for Batch Lookup Simulation and Filtering -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const verifyBtn = document.getElementById('batch-verify-btn');
+      const batchInput = document.getElementById('batch-input');
+      const resultPanel = document.getElementById('batch-result');
+
+      if (verifyBtn && batchInput && resultPanel) {
+        verifyBtn.addEventListener('click', () => {
+          const code = batchInput.value.trim().toUpperCase();
+          if (!code) return;
+          resultPanel.innerHTML = `
+            <div class="flex flex-col">
+              <div class="flex items-center gap-1.5 text-tertiary font-bold font-label-md text-label-md">
+                <span class="material-symbols-outlined text-[16px]">verified</span>
+                <span>Batch #${code} Successfully Verified</span>
+              </div>
+              <span class="font-body-md text-[13px] text-on-surface-variant mt-1">
+                NMR Certificate 2026/DE-BRUKER-884 • Zero Adulteration • C4 Isotopes: Pass (Negative)
+              </span>
+            </div>
+            <a href="#" class="text-primary font-label-sm text-label-sm font-bold underline hover:text-propolis-charcoal">Download PDF</a>
+          `;
+        });
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low pt-space-xl pb-margin mt-space-xl"><div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter mb-space-xl"><div class="lg:col-span-4 flex flex-col items-start gap-4"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-headline-sm text-headline-sm">🐝</div><span class="font-headline-md text-headline-md text-propolis-charcoal">Bee Desi Honey</span></div><p class="font-body-md text-body-md text-on-surface-variant max-w-sm">Single-origin raw honey sustainably harvested across indigenous reserve forests and bio-diverse micro-apiaries of India. Pure, unheated, unfiltered sustenance.</p><div class="flex flex-wrap gap-2 pt-2"><span class="bg-surface px-2.5 py-1 rounded font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">verified</span>NMR Tested</span><span class="bg-surface px-2.5 py-1 rounded font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">eco</span>100% Raw Organic</span><span class="bg-surface px-2.5 py-1 rounded font-label-sm text-label-sm text-tertiary font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">shield_with_heart</span>Cruelty Free</span></div></div><div class="lg:col-span-2 flex flex-col gap-3"><span class="font-title-lg text-title-lg text-propolis-charcoal font-semibold">Harvests</span><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Kashmir Acacia</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sundarbans Wild Mangrove</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Sheesham Terroir</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Raw Jamun Blossom</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Himalayan White Mustard</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Raw Bee Pollen &amp; Comb</a></div><div class="lg:col-span-2 flex flex-col gap-3"><span class="font-title-lg text-title-lg text-propolis-charcoal font-semibold">Purity &amp; Care</span><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">NMR Batch Certificates</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Traceability Map</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Crystallization Guide</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Shipping &amp; Cold Transit</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Apiary FAQ</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="#">Contact Beekeepers</a></div><div class="lg:col-span-4 flex flex-col gap-4"><span class="font-title-lg text-title-lg text-propolis-charcoal font-semibold">The Seasonal Harvest Guild</span><p class="font-body-md text-body-md text-on-surface-variant">Receive exclusive batch announcements, apiary harvest dispatches, and enjoy 10% off your initial jar selection.</p><div class="flex items-center gap-2"><input class="w-full bg-surface text-on-surface font-body-md text-body-md px-3.5 py-2 rounded-lg outline-none text-on-surface placeholder:text-outline" placeholder="Enter your email address" type="email"/><button class="bg-propolis-charcoal text-honeycomb-cream px-5 py-2 rounded-lg font-label-lg text-label-lg hover:bg-primary transition-colors whitespace-nowrap" type="button">Join Guild</button></div><div class="flex items-center gap-4 text-on-surface-variant pt-2"><span class="font-label-sm text-label-sm tracking-wider uppercase text-outline">Certifications:</span><span class="font-label-md text-label-md font-semibold text-on-surface">FSSAI Central</span><span class="font-label-md text-label-md font-semibold text-on-surface">Ayush Premier</span><span class="font-label-md text-label-md font-semibold text-on-surface">Intertek NMR</span></div></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant font-label-md text-label-md"><div class="flex items-center gap-6"><span>© 2025 Bee Desi Indigenous Apiaries Private Ltd. All rights reserved.</span><span>Single Origin • Non-Pasteurized</span></div><div class="flex items-center gap-6"><a class="hover:text-on-surface transition-colors" href="#">Lab Test Registry</a><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Terms of Dispatch</a><a class="hover:text-on-surface transition-colors" href="#">FSSAI Lic. 10022011000412</a></div></div></div></footer></body></html>
