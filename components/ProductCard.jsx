@@ -20,6 +20,12 @@ export default function ProductCard({ product }) {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [addedAnimation, setAddedAnimation] = useState(false);
 
+  const isOutOfStock =
+    product.inStock === false ||
+    (product.stockCount !== undefined &&
+      product.stockCount !== null &&
+      Number(product.stockCount) <= 0);
+
   const selectedVariant = product.variants?.[selectedVariantIndex] || product.variants?.[0] || {
     price: product.basePrice || 690,
     size: "350g",
@@ -32,6 +38,10 @@ export default function ProductCard({ product }) {
   const handleAdd = (e) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isOutOfStock) {
+      if (showToast) showToast(t("stock_sold_out_msg", `${product.name} is currently sold out`), "error");
+      return;
+    }
     addToCart(product, selectedVariant, 1);
     if (showToast) showToast(`${product.name} added to basket!`);
     setAddedAnimation(true);
@@ -44,16 +54,20 @@ export default function ProductCard({ product }) {
       {/* ── IMAGE PRESENTATION (NO CARD BOX, NO HEAVY BORDER) ── */}
       <div className="relative w-full aspect-[4/4.2] flex items-center justify-center bg-[#F4EFE6]/60 rounded-3xl overflow-hidden p-6 hover:bg-[#F2ECE1] transition-colors duration-500">
         
-        {/* Origin / Elevation Pill */}
+        {/* Origin / Elevation / Sold Out Pill */}
         <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5 items-start">
           <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-white/90 backdrop-blur-sm text-[#8C4A00] shadow-xs">
             {product.terroir || product.biome}
           </span>
-          {product.tag && (
+          {isOutOfStock ? (
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-stone-900 text-amber-300 border border-amber-500/40 shadow-xs">
+              {t("cat_sold_out", "Sold Out")}
+            </span>
+          ) : product.tag ? (
             <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#181512] text-amber-200">
               {product.tag}
             </span>
-          )}
+          ) : null}
         </div>
 
         {/* Wishlist Button */}
@@ -165,13 +179,18 @@ export default function ProductCard({ product }) {
 
           <button
             onClick={handleAdd}
-            className={`px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-all active:scale-95 ${
-              addedAnimation
+            disabled={isOutOfStock}
+            className={`px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-all ${
+              isOutOfStock
+                ? "bg-stone-200 text-stone-500 cursor-not-allowed border border-stone-300 shadow-none"
+                : addedAnimation
                 ? "bg-emerald-700 text-white"
-                : "bg-[#181512] hover:bg-[#8C4A00] text-white shadow-xs"
+                : "bg-[#181512] hover:bg-[#8C4A00] text-white shadow-xs active:scale-95"
             }`}
           >
-            {addedAnimation ? (
+            {isOutOfStock ? (
+              <span>{t("cat_sold_out", "Sold Out")}</span>
+            ) : addedAnimation ? (
               <>
                 <FiCheck className="text-sm" />
                 <span>{t("cat_added", "Added")}</span>

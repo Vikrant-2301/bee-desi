@@ -36,11 +36,18 @@ export default function ProductDetailModal() {
   if (!selectedProductForModal) return null;
 
   const product = selectedProductForModal;
+  const isOutOfStock =
+    product.inStock === false ||
+    (product.stockCount !== undefined &&
+      product.stockCount !== null &&
+      Number(product.stockCount) <= 0);
+
   const currentVariant = product.variants[selectedVariantIndex] || product.variants[0];
   const isWishlisted = wishlist.includes(product.id);
   const gallery = product.gallery || [product.image];
 
   const handleAddToCart = () => {
+    if (isOutOfStock) return;
     addToCart(product, currentVariant, quantity);
     closeProductModal();
   };
@@ -190,9 +197,15 @@ export default function ProductDetailModal() {
                   <span className="text-xs text-on-surface-variant">
                     / {currentVariant.size} ({currentVariant.label})
                   </span>
-                  <span className="ml-auto text-xs px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold">
-                    In Stock • Raw Vintage
-                  </span>
+                  {isOutOfStock ? (
+                    <span className="ml-auto text-xs px-2.5 py-1 rounded-full bg-stone-900 text-amber-200 font-bold border border-amber-900/40">
+                      Sold Out • Vintage Exhausted
+                    </span>
+                  ) : (
+                    <span className="ml-auto text-xs px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 font-bold">
+                      In Stock • Raw Vintage
+                    </span>
+                  )}
                 </div>
 
                 {/* Vessel Variant Switcher */}
@@ -405,10 +418,21 @@ export default function ProductDetailModal() {
                   {/* Add To Cart CTA */}
                   <button
                     onClick={handleAddToCart}
-                    className="flex-1 py-3.5 px-6 rounded-xl bg-propolis-charcoal text-honeycomb-cream font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-primary transition-all shadow-honey flex items-center justify-center gap-2 btn-tactile"
+                    disabled={isOutOfStock}
+                    className={`flex-1 py-3.5 px-6 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
+                      isOutOfStock
+                        ? "bg-stone-300 text-stone-500 cursor-not-allowed border border-stone-400/30 shadow-none"
+                        : "bg-propolis-charcoal text-honeycomb-cream hover:bg-primary shadow-honey btn-tactile"
+                    }`}
                   >
-                    <FiShoppingBag className="text-golden-nectar text-base" />
-                    <span>Add to Cart • ₹{(currentVariant.price * quantity).toLocaleString("en-IN")}</span>
+                    {isOutOfStock ? (
+                      <span>Sold Out • Micro-Harvest Exhausted</span>
+                    ) : (
+                      <>
+                        <FiShoppingBag className="text-golden-nectar text-base" />
+                        <span>Add to Cart • ₹{(currentVariant.price * quantity).toLocaleString("en-IN")}</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>

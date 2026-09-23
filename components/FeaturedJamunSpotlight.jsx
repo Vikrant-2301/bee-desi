@@ -15,8 +15,17 @@ import {
 } from "react-icons/fi";
 
 export default function FeaturedJamunSpotlight() {
-  const { openProductModal, addToCart, openNMRLookup } = useCart();
-  const jamunProduct = PRODUCTS.find((p) => p.id === "wild-raw-jamun") || PRODUCTS[0];
+  const { openProductModal, addToCart, openNMRLookup, liveProducts } = useCart();
+  const jamunProduct =
+    (liveProducts && liveProducts.find((p) => p.id === "wild-raw-jamun")) ||
+    PRODUCTS.find((p) => p.id === "wild-raw-jamun") ||
+    PRODUCTS[0];
+
+  const isOutOfStock =
+    jamunProduct.inStock === false ||
+    (jamunProduct.stockCount !== undefined &&
+      jamunProduct.stockCount !== null &&
+      Number(jamunProduct.stockCount) <= 0);
 
   return (
     <section id="single-flora" className="w-full py-24 bg-surface relative overflow-hidden scroll-mt-24">
@@ -149,11 +158,20 @@ export default function FeaturedJamunSpotlight() {
               </button>
 
               <button
-                onClick={() => addToCart(jamunProduct, jamunProduct.variants[0], 1)}
-                className="py-3.5 px-6 rounded-xl bg-surface border border-outline-variant/40 text-propolis-charcoal text-xs sm:text-sm font-bold uppercase tracking-wider hover:bg-beeswax-surface transition-colors shadow-sm flex items-center gap-2 btn-tactile"
+                onClick={() => addToCart(jamunProduct, jamunProduct.variants?.[0], 1)}
+                disabled={isOutOfStock}
+                className={`py-3.5 px-6 rounded-xl border text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors shadow-sm flex items-center gap-2 btn-tactile ${
+                  isOutOfStock
+                    ? "bg-stone-200 border-stone-300 text-stone-500 cursor-not-allowed"
+                    : "bg-surface border-outline-variant/40 text-propolis-charcoal hover:bg-beeswax-surface"
+                }`}
               >
-                <FiShoppingBag className="text-primary" />
-                <span>Add 350g Jar • ₹690</span>
+                <FiShoppingBag className={isOutOfStock ? "text-stone-400" : "text-primary"} />
+                <span>
+                  {isOutOfStock
+                    ? "Sold Out • Harvest Depleted"
+                    : `Add ${(jamunProduct.variants?.[0]?.size || "350g")} Jar • ₹${(jamunProduct.variants?.[0]?.price || jamunProduct.basePrice || 690).toLocaleString("en-IN")}`}
+                </span>
               </button>
 
               <button

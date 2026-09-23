@@ -15,11 +15,24 @@ import {
 } from "react-icons/fi";
 
 export default function TerroirFlightSection() {
-  const { addToCart, openProductModal } = useCart();
-  const flightProduct = PRODUCTS.find((p) => p.id === "connoisseurs-terroir-flight") || PRODUCTS[0];
+  const { addToCart, openProductModal, liveProducts, showToast } = useCart();
+  const flightProduct =
+    (liveProducts && liveProducts.find((p) => p.id === "connoisseurs-terroir-flight")) ||
+    PRODUCTS.find((p) => p.id === "connoisseurs-terroir-flight") ||
+    PRODUCTS[0];
+
+  const isOutOfStock =
+    flightProduct.inStock === false ||
+    (flightProduct.stockCount !== undefined &&
+      flightProduct.stockCount !== null &&
+      Number(flightProduct.stockCount) <= 0);
 
   const handleAddFlight = () => {
-    addToCart(flightProduct, flightProduct.variants[0], 1);
+    if (isOutOfStock) {
+      if (showToast) showToast(`${flightProduct.name} is currently sold out`, "error");
+      return;
+    }
+    addToCart(flightProduct, flightProduct.variants?.[0], 1);
   };
 
   return (
@@ -174,7 +187,7 @@ export default function TerroirFlightSection() {
                 </span>
                 <div className="flex items-baseline gap-2">
                   <span className="font-serif text-3xl font-bold text-propolis-charcoal">
-                    ₹1,980
+                    ₹{(flightProduct.basePrice || 1980).toLocaleString("en-IN")}
                   </span>
                   <span className="text-xs text-outline line-through">₹2,450</span>
                   <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">
@@ -185,10 +198,15 @@ export default function TerroirFlightSection() {
 
               <button
                 onClick={handleAddFlight}
-                className="flex-1 py-3.5 px-6 rounded-xl bg-propolis-charcoal text-honeycomb-cream font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-primary transition-all shadow-honey flex items-center justify-center gap-2 btn-tactile"
+                disabled={isOutOfStock}
+                className={`flex-1 py-3.5 px-6 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
+                  isOutOfStock
+                    ? "bg-stone-300 text-stone-500 cursor-not-allowed border border-stone-400/30"
+                    : "bg-propolis-charcoal text-honeycomb-cream hover:bg-primary shadow-honey btn-tactile"
+                }`}
               >
-                <FiShoppingBag className="text-golden-nectar text-base" />
-                <span>Reserve Flight Set</span>
+                <FiShoppingBag className={isOutOfStock ? "text-stone-400" : "text-golden-nectar text-base"} />
+                <span>{isOutOfStock ? "Sold Out • Flight Depleted" : "Reserve Flight Set"}</span>
               </button>
             </div>
           </div>

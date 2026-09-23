@@ -87,6 +87,8 @@ const TRANSLATIONS = {
     cat_all_intentions: "All Intentions",
     cat_add_btn: "Add to Basket",
     cat_added: "Added",
+    cat_sold_out: "Sold Out",
+    stock_sold_out_msg: "This harvest is currently sold out.",
     cat_direct_harvest: "Direct Harvest",
     cat_explore: "Explore Harvest",
 
@@ -168,6 +170,8 @@ const TRANSLATIONS = {
     cat_all_intentions: "सभी लाभ",
     cat_add_btn: "टोकरी में डालें",
     cat_added: "जोड़ दिया गया",
+    cat_sold_out: "स्टॉक समाप्त",
+    stock_sold_out_msg: "यह शहद वर्तमान में समाप्त हो गया है।",
     cat_direct_harvest: "सीधी फसल",
     cat_explore: "विस्तार से देखें",
 
@@ -248,6 +252,8 @@ const TRANSLATIONS = {
     cat_all_intentions: "ਸਾਰੇ ਲਾਭ",
     cat_add_btn: "ਟੋਕਰੀ ਵਿੱਚ ਪਾਓ",
     cat_added: "ਜੋੜਿਆ ਗਿਆ",
+    cat_sold_out: "ਸਟਾਕ ਖਤਮ",
+    stock_sold_out_msg: "ਇਹ ਸ਼ਹਿਦ ਇਸ ਵੇਲੇ ਖਤਮ ਹੋ ਚੁੱਕਾ ਹੈ।",
     cat_direct_harvest: "ਸਿੱਧੀ ਫਸਲ",
     cat_explore: "ਵੇਰਵਾ ਦੇਖੋ",
 
@@ -328,6 +334,8 @@ const TRANSLATIONS = {
     cat_all_intentions: "બધા લાભો",
     cat_add_btn: "ટોપલીમાં ઉમેરો",
     cat_added: "ઉમેરાઈ ગયું",
+    cat_sold_out: "સ્ટોક સમાપ્ત",
+    stock_sold_out_msg: "આ મધ હાલમાં સ્ટોક બહાર છે.",
     cat_direct_harvest: "સીધો પાક",
     cat_explore: "વિગત જુઓ",
 
@@ -408,6 +416,8 @@ const TRANSLATIONS = {
     cat_all_intentions: "सर्व फायदे",
     cat_add_btn: "बास्केटमध्ये टाका",
     cat_added: "टाकले गेले",
+    cat_sold_out: "स्टॉक संपला",
+    stock_sold_out_msg: "हा मध सध्या संपला आहे.",
     cat_direct_harvest: "थेट पीक",
     cat_explore: "तपशील पहा",
 
@@ -488,6 +498,8 @@ const TRANSLATIONS = {
     cat_all_intentions: "সব উপকারিতা",
     cat_add_btn: "ঝুড়িতে যোগ করুন",
     cat_added: "যোগ করা হয়েছে",
+    cat_sold_out: "স্টক শেষ",
+    stock_sold_out_msg: "এই মধু বর্তমানে শেষ হয়ে গেছে।",
     cat_direct_harvest: "সরাসরি ফসল",
     cat_explore: "বিস্তারিত দেখুন",
 
@@ -568,6 +580,8 @@ const TRANSLATIONS = {
     cat_all_intentions: "அனைத்து நன்மைகள்",
     cat_add_btn: "கூடையில் சேர்க்க",
     cat_added: "சேர்க்கப்பட்டது",
+    cat_sold_out: "விற்றுத் தீர்ந்தது",
+    stock_sold_out_msg: "இந்த தேன் தற்போது கையிருப்பில் இல்லை.",
     cat_direct_harvest: "நேரடி அறுவடை",
     cat_explore: "விவரம் பார்க்க",
 
@@ -648,6 +662,8 @@ const TRANSLATIONS = {
     cat_all_intentions: "అన్ని ప్రయోజనాలు",
     cat_add_btn: "బుట్టలో వేయండి",
     cat_added: "చేర్చబడింది",
+    cat_sold_out: "అయిపోయింది",
+    stock_sold_out_msg: "ఈ తేనె ప్రస్తుతం స్టాక్‌లో లేదు.",
     cat_direct_harvest: "నేరుగా పంట",
     cat_explore: "వివరాలు చూడండి",
 

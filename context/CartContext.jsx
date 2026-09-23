@@ -24,6 +24,23 @@ export function CartProvider({ children }) {
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(null);
   const [toast, setToast] = useState(null);
+  const [liveProducts, setLiveProducts] = useState([]);
+
+  const refreshLiveProducts = async () => {
+    try {
+      const res = await fetch("/api/products", { cache: "no-store" });
+      const data = await res.json();
+      if (data.success && data.products && data.products.length > 0) {
+        setLiveProducts(data.products);
+      }
+    } catch (e) {
+      console.error("Failed to load live products in CartContext", e);
+    }
+  };
+
+  useEffect(() => {
+    refreshLiveProducts();
+  }, []);
 
   // Load from localStorage on client
   useEffect(() => {
@@ -92,8 +109,18 @@ export function CartProvider({ children }) {
   };
 
   const addToCart = (product, variant = null, quantity = 1) => {
-    const selectedVariant = variant || product.variants[0];
-    const sku = selectedVariant.sku || `${product.id}-${selectedVariant.size}`;
+    // Check if product is out of stock in product object or live products
+    const matchingLive = liveProducts.find((p) => p.id === product.id || p.slug === product.slug);
+    const target = matchingLive || product;
+    const isOutOfStock = target.inStock === false || (target.stockCount !== undefined && target.stockCount !== null && Number(target.stockCount) <= 0);
+
+    if (isOutOfStock) {
+      showToast(`${target.name} is currently sold out`, "error");
+      return;
+    }
+
+    const selectedVariant = variant || (target.variants && target.variants[0]) || { price: target.basePrice || 690, size: "350g" };
+    const sku = selectedVariant.sku || `${target.id}-${selectedVariant.size}`;
 
     setCart((prev) => {
       const existing = prev.find((item) => item.sku === sku);
@@ -105,22 +132,22 @@ export function CartProvider({ children }) {
         return [
           ...prev,
           {
-            id: product.id,
+            id: target.id,
             sku: sku,
-            name: product.name,
-            subtitle: product.subtitle,
-            image: product.image,
+            name: target.name,
+            subtitle: target.subtitle,
+            image: target.image,
             size: selectedVariant.size,
             variantLabel: selectedVariant.label,
             price: selectedVariant.price,
-            batchCode: product.batchCode,
+            batchCode: target.batchCode,
             quantity: quantity,
           },
         ];
       }
     });
 
-    showToast(`Added ${product.name} (${selectedVariant.size}) to cart`);
+    showToast(`Added ${target.name} (${selectedVariant.size}) to cart`);
   };
 
   const updateQuantity = (sku, newQty) => {
@@ -297,6 +324,8 @@ export function CartProvider({ children }) {
         triggerOrderPlaced,
         toast,
         showToast,
+        liveProducts,
+        refreshLiveProducts,
       }}
     >
       {children}

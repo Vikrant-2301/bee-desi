@@ -14,15 +14,46 @@ import {
 } from "react-icons/fi";
 
 export default function ProductCatalog() {
-  const { openQuiz } = useCart();
+  const { openQuiz, liveProducts } = useCart();
   const { t } = useLanguage();
   const [selectedTerroir, setSelectedTerroir] = useState("all");
   const [selectedBenefit, setSelectedBenefit] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("featured");
 
+  const [productsList, setProductsList] = useState(
+    liveProducts && liveProducts.length > 0 ? liveProducts : PRODUCTS
+  );
+
+  // Sync with liveProducts from CartContext
+  React.useEffect(() => {
+    if (liveProducts && liveProducts.length > 0) {
+      setProductsList(liveProducts);
+    }
+  }, [liveProducts]);
+
+  // Direct fetch fallback on mount to ensure immediate real-time sync
+  React.useEffect(() => {
+    let isMounted = true;
+    const loadProducts = async () => {
+      try {
+        const res = await fetch("/api/products", { cache: "no-store" });
+        const data = await res.json();
+        if (isMounted && data.success && data.products && data.products.length > 0) {
+          setProductsList(data.products);
+        }
+      } catch (err) {
+        console.error("Error loading products in catalog:", err);
+      }
+    };
+    loadProducts();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const filteredProducts = useMemo(() => {
-    return PRODUCTS.filter((product) => {
+    return productsList.filter((product) => {
       const matchTerroir =
         selectedTerroir === "all" ||
         product.biome === selectedTerroir ||
@@ -45,7 +76,7 @@ export default function ProductCatalog() {
       if (sortBy === "rating") return b.rating - a.rating;
       return 0; // featured default
     });
-  }, [selectedTerroir, selectedBenefit, searchQuery, sortBy]);
+  }, [productsList, selectedTerroir, selectedBenefit, searchQuery, sortBy]);
 
   // Clean list of unique terroirs without duplicate "all"
   const terroirOptions = useMemo(() => {

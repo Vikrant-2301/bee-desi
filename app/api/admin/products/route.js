@@ -135,6 +135,19 @@ export async function PATCH(req) {
     if (tag !== undefined) updates.tag = tag;
     if (batchCode !== undefined) updates.batchCode = batchCode;
 
+    if (basePrice !== undefined) {
+      const existing = await Product.findOne({ id });
+      if (existing && existing.variants && existing.variants.length > 0) {
+        updates.variants = existing.variants.map((v, i) => {
+          const vObj = v.toObject ? v.toObject() : { ...v };
+          if (i === 0) {
+            return { ...vObj, price: Number(basePrice) };
+          }
+          return { ...vObj, price: Math.round(Number(basePrice) * 1.35) };
+        });
+      }
+    }
+
     const updatedProduct = await Product.findOneAndUpdate(
       { id },
       { $set: updates },

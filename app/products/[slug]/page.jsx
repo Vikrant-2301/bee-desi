@@ -366,34 +366,81 @@ export default function ProductPage({ params }) {
   const slug = params?.slug;
 
   const router = useRouter();
-  const { addToCart, openNMRLookup, wishlist, toggleWishlist, showToast } =
+  const { addToCart, openNMRLookup, wishlist, toggleWishlist, showToast, liveProducts } =
     useCart();
 
-  const product = PRODUCTS.find((p) => p.slug === slug);
+  const staticProduct = PRODUCTS.find((p) => p.slug === slug);
+  const [product, setProduct] = useState(staticProduct);
 
   const [selectedVariant, setSelectedVariant] = useState(
-    product?.variants[0] || null
+    staticProduct?.variants?.[0] || null
   );
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [addingToCart, setAddingToCart] = useState(false);
 
+  // Sync with liveProducts
   useEffect(() => {
-    if (!product) {
+    if (liveProducts && liveProducts.length > 0) {
+      const match = liveProducts.find((p) => p.slug === slug || p.id === slug);
+      if (match) {
+        setProduct((prev) => ({ ...(prev || {}), ...match }));
+        if (!selectedVariant && match.variants?.[0]) {
+          setSelectedVariant(match.variants[0]);
+        }
+      }
+    }
+  }, [liveProducts, slug]);
+
+  // Immediate fresh fetch from API
+  useEffect(() => {
+    let isMounted = true;
+    const fetchLatest = async () => {
+      try {
+        const res = await fetch("/api/products", { cache: "no-store" });
+        const data = await res.json();
+        if (isMounted && data.success && data.products) {
+          const match = data.products.find((p) => p.slug === slug || p.id === slug);
+          if (match) {
+            setProduct((prev) => ({ ...(prev || {}), ...match }));
+          }
+        }
+      } catch (err) {
+        console.error("Error fetching live product page:", err);
+      }
+    };
+    fetchLatest();
+    return () => {
+      isMounted = false;
+    };
+  }, [slug]);
+
+  useEffect(() => {
+    if (!product && !staticProduct) {
       router.push("/#catalog");
     }
-  }, [product, router]);
+  }, [product, staticProduct, router]);
 
   if (!product) return null;
+
+  const isOutOfStock =
+    product.inStock === false ||
+    (product.stockCount !== undefined &&
+      product.stockCount !== null &&
+      Number(product.stockCount) <= 0);
 
   const isWishlisted = wishlist.some((w) => w.id === product.id);
   const batchData = BATCH_DATABASE[product.batchCode];
   const otherProducts = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4);
 
   const handleAddToCart = async () => {
+    if (isOutOfStock) {
+      showToast(`${product.name} is sold out`, "error");
+      return;
+    }
     setAddingToCart(true);
     addToCart(product, selectedVariant, quantity);
-    showToast(`${product.name} (${selectedVariant.size}) added to basket!`);
+    showToast(`${product.name} (${selectedVariant?.size || "Jar"}) added to basket!`);
     await new Promise((r) => setTimeout(r, 600));
     setAddingToCart(false);
   };
@@ -435,9 +482,15 @@ export default function ProductPage({ params }) {
                 />
                 {/* Badges */}
                 <div className="absolute top-4 left-4 flex flex-col gap-2">
-                  <span className="px-3 py-1 bg-stone-900/90 text-amber-300 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-sm">
-                    {product.tag}
-                  </span>
+                  {isOutOfStock ? (
+                    <span className="px-3 py-1 bg-stone-900 text-amber-300 border border-amber-500/40 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-sm shadow-md">
+                      Sold Out • Vintage Depleted
+                    </span>
+                  ) : product.tag ? (
+                    <span className="px-3 py-1 bg-stone-900/90 text-amber-300 text-[10px] font-bold uppercase tracking-widest rounded-full backdrop-blur-sm">
+                      {product.tag}
+                    </span>
+                  ) : null}
                   {product.isBundle && (
                     <span className="px-3 py-1 bg-amber-500 text-white text-[10px] font-bold uppercase tracking-widest rounded-full">
                       Gift Bundle
@@ -610,10 +663,16 @@ export default function ProductPage({ params }) {
               <div className="flex flex-col gap-3">
                 <button
                   onClick={handleAddToCart}
-                  disabled={addingToCart}
-                  className="w-full flex items-center justify-center gap-2.5 bg-amber-600 hover:bg-amber-700 text-white py-4 rounded-2xl font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-amber-200 disabled:opacity-60"
+                  disabled={addingToCart || isOutOfStock}
+                  className={`w-full flex items-center justify-center gap-2.5 py-4 rounded-2xl font-bold text-sm uppercase tracking-wider transition-all ${
+                    isOutOfStock
+                      ? "bg-stone-300 text-stone-500 cursor-not-allowed border border-stone-400/30 shadow-none"
+                      : "bg-amber-600 hover:bg-amber-700 text-white shadow-lg shadow-amber-200 disabled:opacity-60"
+                  }`}
                 >
-                  {addingToCart ? (
+                  {isOutOfStock ? (
+                    <span>Sold Out • Vintage Depleted</span>
+                  ) : addingToCart ? (
                     <>
                       <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                       <span>Adding to Basket...</span>
@@ -625,16 +684,18 @@ export default function ProductPage({ params }) {
                     </>
                   )}
                 </button>
-                <button
-                  onClick={() => {
-                    addToCart(product, selectedVariant, quantity);
-                    router.push("/checkout");
-                  }}
-                  className="w-full flex items-center justify-center gap-2.5 bg-stone-900 text-white py-3.5 rounded-2xl font-bold text-sm uppercase tracking-wider hover:bg-stone-800 transition-all"
-                >
-                  <FiZap className="text-amber-400" />
-                  <span>Buy Now — Secure Checkout</span>
-                </button>
+                {!isOutOfStock && (
+                  <button
+                    onClick={() => {
+                      addToCart(product, selectedVariant, quantity);
+                      router.push("/checkout");
+                    }}
+                    className="w-full flex items-center justify-center gap-2.5 bg-stone-900 text-white py-3.5 rounded-2xl font-bold text-sm uppercase tracking-wider hover:bg-stone-800 transition-all"
+                  >
+                    <FiZap className="text-amber-400" />
+                    <span>Buy Now — Secure Checkout</span>
+                  </button>
+                )}
               </div>
 
               {/* Pincode Checker */}
