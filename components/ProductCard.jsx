@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   FiShoppingBag,
   FiHeart,
@@ -16,13 +16,18 @@ import {
 
 export default function ProductCard({ product }) {
   const { addToCart, wishlist, toggleWishlist, showToast } = useCart();
+  const { t } = useLanguage();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [addedAnimation, setAddedAnimation] = useState(false);
 
-  const selectedVariant = product.variants[selectedVariantIndex] || product.variants[0];
-  const isWishlisted = wishlist.some
+  const selectedVariant = product.variants?.[selectedVariantIndex] || product.variants?.[0] || {
+    price: product.basePrice || 690,
+    size: "350g",
+  };
+
+  const isWishlisted = wishlist?.some
     ? wishlist.some((w) => w.id === product.id)
-    : wishlist.includes(product.id);
+    : false;
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -34,112 +39,97 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className="group bg-white rounded-2xl overflow-hidden border border-stone-200 hover:border-amber-300 hover:shadow-xl transition-all duration-300 shadow-sm flex flex-col"
-    >
-      {/* Image Area */}
-      <Link href={`/products/${product.slug}`} className="block relative">
-        <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-b from-amber-50 to-amber-100">
-          {/* Badges */}
-          <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5 items-start">
-            <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-white/90 backdrop-blur-sm border border-amber-200 text-amber-800 shadow-sm">
-              {product.terroir}
+    <div className="group relative flex flex-col transition-all duration-300">
+      
+      {/* ── IMAGE PRESENTATION (NO CARD BOX, NO HEAVY BORDER) ── */}
+      <div className="relative w-full aspect-[4/4.2] flex items-center justify-center bg-[#F4EFE6]/60 rounded-3xl overflow-hidden p-6 hover:bg-[#F2ECE1] transition-colors duration-500">
+        
+        {/* Origin / Elevation Pill */}
+        <div className="absolute top-4 left-4 z-10 flex flex-col gap-1.5 items-start">
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-white/90 backdrop-blur-sm text-[#8C4A00] shadow-xs">
+            {product.terroir || product.biome}
+          </span>
+          {product.tag && (
+            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-[#181512] text-amber-200">
+              {product.tag}
             </span>
-            {product.tag && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-stone-900 text-amber-300">
-                {product.tag}
-              </span>
-            )}
-          </div>
+          )}
+        </div>
 
-          {/* Wishlist */}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              toggleWishlist(product);
-            }}
-            aria-label="Toggle Wishlist"
-            className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm border border-stone-200 flex items-center justify-center hover:bg-red-50 hover:border-red-200 transition-all shadow-sm"
-          >
-            <FiHeart className={`text-sm ${isWishlisted ? "fill-red-500 text-red-500" : "text-stone-400"}`} />
-          </button>
+        {/* Wishlist Button */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleWishlist(product);
+          }}
+          aria-label="Wishlist"
+          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center hover:bg-white text-stone-400 hover:text-red-500 transition-colors shadow-xs"
+        >
+          <FiHeart className={`text-base ${isWishlisted ? "fill-red-500 text-red-500" : ""}`} />
+        </button>
 
-          {/* Product Image */}
+        {/* Clean Honey Jar Image — Floating organically */}
+        <Link href={`/products/${product.slug}`} className="relative w-full h-full flex items-center justify-center">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="max-h-full max-w-full object-contain filter drop-shadow-[0_12px_24px_rgba(24,21,18,0.12)] group-hover:scale-108 transition-transform duration-500 ease-out select-none"
+            loading="lazy"
           />
+        </Link>
 
-          {/* View Details hover overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-end justify-center pb-4 opacity-0 group-hover:opacity-100">
-            <span className="flex items-center gap-1.5 bg-white text-stone-900 text-xs font-bold px-4 py-2 rounded-full shadow-lg">
-              View Details <FiArrowRight className="text-amber-600" />
-            </span>
-          </div>
+        {/* Quick View Details on Hover */}
+        <div className="absolute bottom-4 inset-x-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+          <span className="px-4 py-2 rounded-full bg-[#181512]/90 backdrop-blur-md text-white text-xs font-semibold flex items-center gap-1.5 shadow-lg">
+            <span>Explore Harvest</span>
+            <FiArrowRight className="text-amber-300 text-xs" />
+          </span>
         </div>
-      </Link>
+      </div>
 
-      {/* Content */}
-      <div className="flex flex-col flex-1 p-4">
-        {/* Rating & Elevation */}
-        <div className="flex items-center justify-between text-xs text-stone-400 mb-2">
+      {/* ── CONTENT & METADATA (CLEAN LUXURY EDITORIAL) ── */}
+      <div className="flex flex-col pt-4 px-1 flex-1">
+        
+        {/* Rating & Forest Terroir */}
+        <div className="flex items-center justify-between text-xs text-stone-500 mb-1.5">
           <div className="flex items-center gap-1">
-            <FiStar className="text-amber-400 fill-amber-400 text-xs" />
-            <span className="font-bold text-stone-700">{product.rating}</span>
-            <span>({product.reviewsCount})</span>
+            <FiStar className="text-[#8C4A00] fill-[#8C4A00] text-xs" />
+            <span className="font-bold text-[#181512]">{product.rating}</span>
+            <span className="text-stone-400 font-mono">({product.reviewsCount})</span>
           </div>
-          <div className="flex items-center gap-1 text-[11px]">
-            <FiMapPin className="text-amber-600 text-[10px]" />
+          <div className="flex items-center gap-1 font-mono text-[11px] text-stone-500">
+            <FiMapPin className="text-[#8C4A00] text-xs" />
             <span>{product.elevation}</span>
           </div>
         </div>
 
-        {/* Title */}
+        {/* Botanical Product Title */}
         <Link href={`/products/${product.slug}`}>
-          <h3 className="font-serif text-lg font-bold text-stone-900 hover:text-amber-700 transition-colors leading-snug line-clamp-1 mb-0.5">
+          <h3 className="font-serif text-xl sm:text-[22px] font-bold text-[#181512] hover:text-[#8C4A00] transition-colors leading-snug">
             {product.name}
           </h3>
         </Link>
 
-        {/* Subtitle */}
-        <p className="text-xs text-stone-400 mb-3 line-clamp-1">{product.subtitle}</p>
+        {/* Subtitle / Flora */}
+        <p className="text-xs text-stone-500 line-clamp-1 mt-0.5 mb-3 font-normal">
+          {product.subtitle || product.sensoryNotes}
+        </p>
 
-        {/* Sensory Mini Indicators */}
-        <div className="bg-stone-50 rounded-xl p-2.5 mb-3 border border-stone-100 text-[11px] flex flex-col gap-1.5">
-          {[
-            { label: "Sweetness", val: product.sensoryRadar.sweetness, color: "bg-amber-400" },
-            { label: "Floral Aroma", val: product.sensoryRadar.floral, color: "bg-emerald-500" },
-            { label: "Tannic Depth", val: product.sensoryRadar.tannicDepth, color: "bg-stone-600" },
-          ].map(({ label, val, color }) => (
-            <div key={label} className="flex items-center justify-between text-stone-500">
-              <span>{label}</span>
-              <div className="flex gap-1">
-                {[1, 2, 3, 4, 5].map((dot) => (
-                  <span
-                    key={dot}
-                    className={`w-1.5 h-1.5 rounded-full ${dot <= val ? color : "bg-stone-200"}`}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+        {/* Live Lab Markers: Diastase & 0.00% Sugar */}
+        <div className="flex items-center justify-between text-[11px] font-mono py-2 border-y border-[#EDE7DD] mb-3 text-stone-600">
+          <div className="flex items-center gap-1.5">
+            <FiShield className="text-emerald-700 text-xs" />
+            <span className="text-emerald-800 font-bold">0.00% Sugar Syrup</span>
+          </div>
+          <span className="text-stone-500">
+            {product.metrics?.diastase ? `${product.metrics.diastase} Enzymes` : "100% Raw Unheated"}
+          </span>
         </div>
 
-        {/* NMR badge */}
-        <div className="flex items-center gap-1.5 mb-3">
-          <FiShield className="text-emerald-600 text-xs flex-shrink-0" />
-          <span className="text-[10px] font-bold text-emerald-700">NMR Certified · 0.00% Adulteration</span>
-        </div>
-
-        {/* Variant Selector */}
-        {product.variants.length > 1 && (
-          <div className="flex items-center gap-1.5 mb-3">
+        {/* Size Variant Selector */}
+        {product.variants && product.variants.length > 1 && (
+          <div className="flex items-center gap-1.5 mb-4">
             {product.variants.map((v, i) => (
               <button
                 key={v.sku || i}
@@ -147,10 +137,10 @@ export default function ProductCard({ product }) {
                   e.preventDefault();
                   setSelectedVariantIndex(i);
                 }}
-                className={`flex-1 py-1 px-2 rounded-lg text-xs font-semibold transition-all ${
+                className={`flex-1 py-1 px-2 rounded-lg text-xs font-mono font-semibold transition-all ${
                   selectedVariantIndex === i
-                    ? "bg-amber-600 text-white shadow-sm"
-                    : "bg-stone-100 text-stone-500 hover:bg-stone-200"
+                    ? "bg-[#181512] text-white shadow-xs"
+                    : "bg-[#F4EFE6] text-stone-600 hover:bg-[#EAE3D5]"
                 }`}
               >
                 {v.size}
@@ -159,42 +149,44 @@ export default function ProductCard({ product }) {
           </div>
         )}
 
-        {/* Price & Add to Cart */}
-        <div className="flex items-center justify-between pt-3 border-t border-stone-100 mt-auto">
+        {/* Price & Add to Cart Action */}
+        <div className="flex items-center justify-between mt-auto pt-2">
           <div className="flex flex-col">
-            <span className="text-[10px] uppercase tracking-wider text-stone-400 font-medium">
-              Direct Apiary
+            <span className="text-[10px] uppercase font-mono tracking-wider text-stone-400 font-semibold">
+              {t("cat_direct_harvest", "Direct Harvest")}
             </span>
             <div className="flex items-baseline gap-1">
-              <span className="font-serif text-xl font-bold text-stone-900">
-                ₹{selectedVariant.price.toLocaleString("en-IN")}
+              <span className="font-serif text-2xl font-bold text-[#181512]">
+                ₹{selectedVariant.price?.toLocaleString("en-IN")}
               </span>
-              <span className="text-[11px] text-stone-400">/ {selectedVariant.size}</span>
+              <span className="text-xs text-stone-400 font-mono">/ {selectedVariant.size}</span>
             </div>
           </div>
 
           <button
             onClick={handleAdd}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all shadow-sm ${
+            className={`px-4 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider flex items-center gap-2 transition-all active:scale-95 ${
               addedAnimation
-                ? "bg-emerald-600 text-white"
-                : "bg-stone-900 text-white hover:bg-amber-600"
+                ? "bg-emerald-700 text-white"
+                : "bg-[#181512] hover:bg-[#8C4A00] text-white shadow-xs"
             }`}
           >
             {addedAnimation ? (
               <>
                 <FiCheck className="text-sm" />
-                <span>Added</span>
+                <span>{t("cat_added", "Added")}</span>
               </>
             ) : (
               <>
-                <FiShoppingBag className="text-amber-400 text-sm" />
-                <span>Add</span>
+                <FiShoppingBag className="text-amber-300 text-sm" />
+                <span>{t("cat_add_btn", "Add to Basket")}</span>
               </>
             )}
           </button>
         </div>
+
       </div>
-    </motion.div>
+
+    </div>
   );
 }

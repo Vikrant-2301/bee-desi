@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   FiInstagram,
   FiYoutube,
@@ -31,7 +32,7 @@ const SHOP_LINKS = [
 
 const COMPANY_LINKS = [
   { label: "Why Choose Us", href: "/why-us" },
-  { label: "Our Story (Suresh Yadav)", href: "/our-story" },
+  { label: "Our Story", href: "/our-story" },
   { label: "FAQs", href: "/faqs" },
   { label: "NMR Lab Reports", href: "/#nmr-lab" },
   { label: "Office Location Map", href: "https://maps.app.goo.gl/XLW9mfgrwBQk5NcD7", external: true },
@@ -48,6 +49,7 @@ const SUPPORT_LINKS = [
 
 export default function Footer() {
   const { showToast } = useCart();
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -103,22 +105,22 @@ export default function Footer() {
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 px-4 py-2 rounded-full mb-4">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-white text-xs font-bold uppercase tracking-widest">
-                Farmer to Consumer · No Brokers · PAN India
+                {t("footer_tag", "Farmer to Consumer · No Brokers · PAN India")}
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white drop-shadow-lg leading-tight max-w-2xl">
-              From India's Ancient Forests
+              {t("footer_h2_1", "From India's Ancient Forests")}
               <br />
-              <span className="text-amber-300">to Your Table</span>
+              <span className="text-amber-300">{t("footer_h2_2", "to Your Table")}</span>
             </h2>
             <p className="text-white/80 text-sm mt-3 max-w-md">
-              Raw, unheated, NMR-certified honey. Sourced with reverence from tribal communities who've tended these forests for generations.
+              {t("footer_p", "Raw, unheated, NMR-certified honey. Sourced with reverence from tribal communities who've tended these forests for generations.")}
             </p>
             <Link
               href="/#catalog"
               className="mt-5 inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 active:scale-95 text-stone-900 font-bold text-sm px-6 py-3 rounded-2xl transition-all shadow-xl shadow-amber-900/40 group"
             >
-              Explore Our Honeys
+              {t("footer_btn", "Explore Our Honeys")}
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
@@ -133,16 +135,16 @@ export default function Footer() {
       ───────────────────────────────────────── */}
       <div className="border-b border-white/[0.06]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.06]">
             {[
-              { icon: FiShield, label: "NMR Certified", sub: "0.00% Adulterants" },
-              { icon: FiTruck, label: "Free Delivery", sub: "Orders above ₹999" },
-              { icon: FiPackage, label: "Cold-Chain", sub: "Temperature protected" },
-              { icon: FiLock, label: "Secure Checkout", sub: "Razorpay 256-bit SSL" },
-            ].map(({ icon: Icon, label, sub }, i) => (
+              { icon: FiShield, label: t("footer_nmr", "NMR Certified"), sub: "0.00% Adulterants" },
+              { icon: FiTruck, label: t("footer_delivery", "Free Delivery"), sub: "Orders above ₹999" },
+              { icon: FiPackage, label: t("footer_cold", "Cold-Chain"), sub: "Temperature protected" },
+              { icon: FiLock, label: t("footer_secure", "Secure Checkout"), sub: "Razorpay 256-bit SSL" },
+            ].map(({ icon: Icon, label, sub }) => (
               <div
                 key={label}
-                className={`flex items-center gap-3 px-4 py-5 ${i < 3 ? "border-r border-white/[0.06]" : ""}`}
+                className="flex items-center gap-3 px-4 py-4 sm:py-5"
               >
                 <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center flex-shrink-0">
                   <Icon className="text-amber-400 text-sm" />
@@ -175,7 +177,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs text-stone-500 leading-relaxed">
-              India's purest single-origin raw honeys. Founded in 1996 by master farmer Suresh Yadav. Tested by German Bruker NMR.
+              {t("footer_brand_desc", "India's purest single-origin raw honeys. Est. 1996. Tested by German Bruker 400MHz NMR.")}
             </p>
 
             {/* Contact */}

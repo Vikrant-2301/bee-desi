@@ -5,6 +5,7 @@ import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Toast from "@/components/Toast";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   FiChevronDown,
   FiChevronUp,
@@ -12,238 +13,277 @@ import {
   FiShield,
   FiTruck,
   FiPackage,
-  FiHelpCircle,
   FiMessageCircle,
   FiArrowRight,
+  FiSearch,
+  FiPhone,
 } from "react-icons/fi";
 
 const FAQS = {
   "About the Honey": [
     {
       q: "What makes Bee Desi honey different from supermarket honey?",
-      a: "Commercial honey is typically heat-pasteurized (which destroys live enzymes), blended from multiple farms and regions (destroying single-flora purity), and often adulterated with corn syrup or invert sugar. Bee Desi honey is raw and unheated (below 35°C always), sourced from a single forest/flora per batch, and tested by German Bruker 400MHz NMR spectroscopy to confirm zero adulteration. Every batch report is published openly.",
+      a: "Commercial honey is typically heat-pasteurized at 75°C (which destroys live enzymes), blended from multiple unknown farms, and often adulterated with corn syrup or inverted sugar. Bee Desi honey is raw, single-origin, and strictly unheated (below 35°C hive temperature). Every batch is independently fingerprinted by German Bruker 400MHz NMR spectroscopy to confirm 0.00% synthetic adulterants.",
     },
     {
       q: "What does 'Single-Flora' mean?",
-      a: "Single-flora honey means the nectar comes from a dominant single flower species — like Jamun (Syzygium cumini) or Acacia (Robinia pseudoacacia). When bees forage on a single bloom in a single forest, the resulting honey has a unique flavour, colour, and chemical fingerprint. Commercial honey blends hundreds of floral sources into a generic, undifferentiated product. Our single-flora honeys each have their own personality — like wines from different vineyards.",
+      a: "Single-flora honey means the nectar is collected by bees during a specific seasonal bloom of one dominant wild flower—such as Jamun (Syzygium cumini), White Acacia (Robinia pseudoacacia), or Sidr (Ziziphus). Unlike supermarket honey which blends hundreds of bulk batches together, our single-flora honeys each have their own distinct botanical flavor, natural color, and medicinal profile.",
     },
     {
-      q: "What is 'Terroir' and why does it matter in honey?",
-      a: "Terroir (French: 'sense of place') is the idea that the soil, altitude, climate, and ecosystem of a location gives its produce a unique flavour profile. A Kashmir acacia at 1,850m MSL gives a water-clear, vanilla-floral honey. Sunderbans mangrove at sea level gives a dark, savoury, high-antioxidant honey. These are genuinely different products, not just marketing labels.",
+      q: "What is 'Terroir' in honey?",
+      a: "Terroir (the unique soil, altitude, microclimate, and botanical ecosystem of a geographic region) gives raw honey its soul. Kashmiri Acacia from 1,850m MSL is crystal-clear and whisper-sweet; Sunderbans Mangrove from coastal tidal creeks is rich, dark, and deeply antioxidant. Every harvest tells the story of its landscape.",
     },
     {
-      q: "Will my honey crystallize?",
-      a: "Natural honey crystallizes — this is a sign of purity, not spoilage. Adulterated or heated honey often won't crystallize because the natural glucose has been altered. Different florals crystallize at different rates: Kashmiri Acacia crystallizes very slowly; Mustard and Sidr crystallize faster. To re-liquefy crystallized honey, warm the jar gently in a bowl of warm water (never above 40°C). Never microwave it.",
+      q: "Why does real raw honey crystallize, and what should I do?",
+      a: "Crystallization is living proof that honey is raw and unpasteurized. Pure honey contains natural glucose and wild micro-pollen that naturally form crystals in cool weather. Commercial syrups stay unnaturally clear forever because they are boiled and stripped of pollen. If you prefer a fluid texture, gently warm the glass jar in a bowl of warm water (under 40°C). Never microwave.",
     },
     {
       q: "Is your honey safe for diabetics?",
-      a: "Raw single-flora honey has a lower Glycemic Index than commercial honey, particularly our Wild Jamun variety (low-GI due to high fructose/glucose ratio of 1.38). However, honey is still a sugar and should be consumed in moderation. Please consult your physician before consuming if you are managing diabetes.",
+      a: "Raw single-flora honey—particularly our Wild Raw Jamun Honey—has a naturally low Glycemic Index due to a higher natural fructose-to-glucose ratio (1.38). However, honey is still a concentrated carbohydrate. We advise consulting your physician before incorporating raw honey into a diabetes management routine.",
     },
     {
-      q: "Can I give Bee Desi honey to children?",
-      a: "Raw honey should NOT be given to children under 12 months of age due to risk of infant botulism (a rare but serious condition). For children above 1 year, raw honey is generally safe and nutritionally superior to processed honey.",
-    },
-  ],
-  "Purity & Testing": [
-    {
-      q: "What is NMR testing and why is it the gold standard?",
-      a: "NMR (Nuclear Magnetic Resonance) spectroscopy is a molecular-level analytical technique that produces a detailed 'fingerprint' of every compound in honey. A 400MHz Bruker NMR can detect adulteration at concentrations below 0.1% — far beyond any standard FSSAI test. We use the same laboratory (Bruker BioSpin, Rheinstetten, Germany) that certifies honey for European export markets. No other Indian consumer honey brand publishes these results.",
-    },
-    {
-      q: "Where can I see the lab reports for my batch?",
-      a: "Every Bee Desi jar has a batch code printed on the label (e.g., BD-JAMUN-2026). Enter this code in our NMR Lab Lookup tool on our website homepage to view the full spectrogram, diastase activity, moisture content, HMF score, and C4/C3 adulteration results.",
-    },
-    {
-      q: "What does 'C4 Negative' mean on the report?",
-      a: "C4 refers to 'C4 photosynthesis pathway' sugars — primarily corn syrup and sugarcane syrup — which are the most common honey adulterants globally. 'C4 Negative' means zero corn syrup or cane sugar was detected. Similarly, C3 refers to invert rice sugar and beet sugar. Our honey tests negative for both.",
-    },
-    {
-      q: "What is Diastase Activity and why does it matter?",
-      a: "Diastase is a live enzyme naturally present in raw honey produced by bees. When honey is heated, diastase is destroyed. A Diastase Number (DN) above 8 indicates the honey is raw and unheated. Our honey consistently tests at 18–24 DN — far exceeding both Indian FSSAI standards (minimum 8 DN) and European standards (minimum 8 DN).",
+      q: "Can I give Bee Desi honey to infants?",
+      a: "Raw unpasteurized honey should NEVER be given to infants under 12 months of age due to the biological risk of infant botulism. For children over 1 year and adults, raw honey is a wholesome, nutrient-dense natural food.",
     },
   ],
-  "Shipping & Delivery": [
+  "Purity & Science": [
     {
-      q: "Do you deliver across all of India?",
-      a: "Yes, we deliver to all PIN codes across India. Use the PIN code checker on any product page to confirm serviceability and estimated delivery time for your specific address.",
+      q: "What is German Bruker 400MHz NMR spectroscopy?",
+      a: "Nuclear Magnetic Resonance (NMR) spectroscopy is the world's most advanced molecular testing method for honey purity. Conducted at Bruker BioSpin NMR Laboratories in Germany, it generates a high-resolution molecular fingerprint that detects even 0.01% synthetic C3/C4 sugar syrups (inverted rice, corn, or beet syrups). We publish full batch reports openly on our website.",
     },
     {
-      q: "What is Cold-Chain delivery and why is it important?",
-      a: "Raw honey should be stored below 35°C. Exposure to heat during transit can degrade enzymes and begin fermentation. We dispatch all orders in insulated packaging with temperature monitoring, partnering with cold-chain logistics providers. This adds slightly to shipping costs but is non-negotiable for us.",
+      q: "How do I check the lab report for my jar?",
+      a: "Every Bee Desi jar carries a specific harvest batch code on the label (e.g. BD-JAMUN-2026). Simply enter this code in the NMR Batch Lookup tool on our homepage to view the live laboratory spectrogram, diastase enzyme rating, moisture score, and 0.00% adulteration status.",
     },
     {
-      q: "How long does delivery take?",
-      a: "Standard delivery: 4–6 business days across India. Express delivery: 2–3 business days (major metros). If you order before 2 PM on a working day, dispatch happens the same day.",
-    },
-    {
-      q: "Is shipping free?",
-      a: "Free shipping is available on all orders above ₹999. For orders below ₹999, a flat shipping charge of ₹80 applies.",
-    },
-    {
-      q: "How is the honey packaged for delivery?",
-      a: "Each jar is bubble-wrapped individually, placed in an insulated box with food-grade foam lining, and sealed with tamper-evident security tape. We use 100% recyclable packaging. No styrofoam, no single-use plastics in our boxes.",
+      q: "What does 'Diastase Activity' measure?",
+      a: "Diastase is a vital digestive enzyme secreted by bees during nectar ripening. When honey is heated by industrial factories, diastase is completely destroyed. FSSAI requires a minimum Diastase Number (DN) of 8. Bee Desi batches consistently test between 18.0 and 24.6 DN—proving our honey is living, cold-extracted, and unheated.",
     },
   ],
-  "Orders & Returns": [
+  "Shipping & Cold Chain": [
     {
-      q: "Can I return or exchange my order?",
-      a: "We accept returns within 7 days of delivery if the product is damaged, leaking, or significantly different from what was described. Since honey is a food product, we cannot accept returns for change of mind. To initiate a return, WhatsApp us at 7071101119 or 9307777500 with your order ID and a photo of the issue.",
+      q: "Do you deliver across all PIN codes in India?",
+      a: "Yes. We deliver across all servicable PIN codes in India through express courier networks. Enter your PIN code on any product page for real-time delivery estimates.",
     },
     {
-      q: "What payment methods do you accept?",
-      a: "We accept all major UPI apps (GPay, PhonePe, Paytm), credit/debit cards, net banking, and EMI options via Razorpay. All transactions are 256-bit encrypted. We do not store any card details.",
+      q: "How do you protect raw honey from transit heat?",
+      a: "Raw honey should not be subjected to temperatures above 35°C. Every jar is shipped in eco-friendly shock-cushioned insulated packaging with temperature monitoring, ensuring the living enzymes arrive in the exact state they left the forest.",
     },
     {
-      q: "Can I cancel my order?",
-      a: "Yes, orders can be cancelled within 2 hours of placing them. After 2 hours, the order enters dispatch preparation and cannot be cancelled. Contact us immediately on WhatsApp for cancellation requests.",
+      q: "What are your shipping rates and timelines?",
+      a: "We offer Free Shipping on all orders above ₹999. For smaller orders, a flat ₹80 delivery fee applies. Standard delivery takes 2–4 business days in major metros and 3–5 days in other regions. Orders placed before 2:00 PM IST dispatch the same business day.",
+    },
+  ],
+  "Orders & Guarantees": [
+    {
+      q: "What is your return policy?",
+      a: "If your jar arrives damaged, broken, or leaking during transit, we provide an immediate 100% replacement or refund. Simply share your order ID and a photo on WhatsApp at 7071101119 or 9307777500 within 48 hours of delivery.",
     },
     {
-      q: "Do you offer bulk or wholesale pricing?",
-      a: "Yes! We offer corporate gifting packages, bulk orders for restaurants and cafes, and B2B wholesale arrangements. Reach out on WhatsApp or email hello@beedesi.in for a custom quote.",
+      q: "What payment options are supported?",
+      a: "We support UPI (Google Pay, PhonePe, Paytm), Net Banking, Debit/Credit cards, and EMI via 256-bit secure Razorpay encryption.",
     },
     {
-      q: "Is a GST invoice provided?",
-      a: "Yes, a complete GST invoice (with GSTIN) is included with every order. Digital copies are also emailed automatically after purchase.",
+      q: "Do you offer corporate or wedding gifting?",
+      a: "Yes. We curate custom wooden gift flight boxes with custom wax seals and personalized handwritten scrolls for weddings, festive gifts, and corporate connoisseurs. Reach out directly on WhatsApp or email hello@beedesi.in.",
     },
   ],
 };
 
-function FAQAccordion({ q, a }) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className={`border rounded-2xl overflow-hidden transition-all ${open ? "border-amber-300 shadow-sm" : "border-stone-200"}`}>
-      <button
-        className="w-full flex items-center justify-between gap-4 p-5 text-left bg-white hover:bg-amber-50/30 transition-colors"
-        onClick={() => setOpen(!open)}
-      >
-        <span className="text-sm font-semibold text-stone-800 leading-relaxed">{q}</span>
-        {open
-          ? <FiChevronUp className="text-amber-600 flex-shrink-0 text-lg" />
-          : <FiChevronDown className="text-stone-400 flex-shrink-0 text-lg" />
-        }
-      </button>
-      {open && (
-        <div className="px-5 pb-5 bg-white border-t border-stone-100">
-          <p className="text-sm text-stone-600 leading-relaxed pt-4">{a}</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-const CATEGORY_ICONS = {
-  "About the Honey": FiShoppingBag,
-  "Purity & Testing": FiShield,
-  "Shipping & Delivery": FiTruck,
-  "Orders & Returns": FiPackage,
-};
+const CATEGORIES = [
+  { id: "About the Honey", icon: FiShoppingBag },
+  { id: "Purity & Science", icon: FiShield },
+  { id: "Shipping & Cold Chain", icon: FiTruck },
+  { id: "Orders & Guarantees", icon: FiPackage },
+];
 
 export default function FAQsPage() {
+  const { getFaqsData } = useLanguage();
+  const f = getFaqsData();
   const [activeCategory, setActiveCategory] = useState("About the Honey");
-  const categories = Object.keys(FAQS);
+  const [searchFilter, setSearchFilter] = useState("");
+  const [openIndex, setOpenIndex] = useState(0);
+
+  const activeFaqs = FAQS[activeCategory] || [];
+  const filteredFaqs = searchFilter.trim()
+    ? Object.values(FAQS)
+        .flat()
+        .filter(
+          (item) =>
+            item.q.toLowerCase().includes(searchFilter.toLowerCase()) ||
+            item.a.toLowerCase().includes(searchFilter.toLowerCase())
+        )
+    : activeFaqs;
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#181512] selection:bg-amber-200 selection:text-stone-900">
       <Header />
       <Toast />
 
       <main className="flex-1" style={{ paddingTop: "var(--header-h, 88px)" }}>
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-stone-50 to-amber-50 py-16 lg:py-20 border-b border-amber-100">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="w-14 h-14 rounded-2xl bg-amber-100 border border-amber-200 flex items-center justify-center mx-auto mb-5">
-              <FiHelpCircle className="text-amber-700 text-2xl" />
-            </div>
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold text-stone-900 mb-4">
-              Frequently Asked Questions
+        
+        {/* ── EDITORIAL HEADER ── */}
+        <section className="relative border-b border-[#E7E2D8] bg-[#F4EFE6] pt-14 pb-16 lg:pt-20 lg:pb-24">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8C4A00] font-bold block mb-4">
+              {f.hero_tag || "Knowledge Archive · Bee Desi"}
+            </span>
+
+            <h1 className="font-serif text-4xl sm:text-6xl font-bold text-[#181512] leading-[1.1] mb-6">
+              {f.hero_h1 || "Frequently Asked Questions"}
             </h1>
-            <p className="text-stone-500 text-base max-w-xl mx-auto leading-relaxed">
-              Honest answers to every question you might have about our honey, our testing process, and how we operate.
+
+            <p className="text-stone-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+              {f.hero_p}
             </p>
+
+
+            {/* Quick Search */}
+            <div className="relative max-w-xl mx-auto">
+              <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 text-base" />
+              <input
+                type="text"
+                value={searchFilter}
+                onChange={(e) => setSearchFilter(e.target.value)}
+                placeholder="Search any query (e.g. crystallization, NMR test, diabetes, delivery)..."
+                className="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white border border-[#D5CDBD] text-sm text-stone-900 placeholder:text-stone-400 focus:outline-none focus:border-[#8C4A00] shadow-xs"
+              />
+              {searchFilter && (
+                <button
+                  onClick={() => setSearchFilter("")}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-mono text-stone-400 hover:text-stone-800"
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+
           </div>
         </section>
 
-        {/* FAQ Body */}
-        <section className="py-16 bg-white">
+        {/* ── MAIN CONTENT SECTION ── */}
+        <section className="py-16 lg:py-20 bg-white">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            <div className="flex flex-col lg:flex-row gap-10 items-start">
+              
+              {/* Category Nav Sidebar */}
+              {!searchFilter && (
+                <div className="lg:w-64 flex-shrink-0 lg:sticky lg:top-28 w-full">
+                  <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
+                    {CATEGORIES.map(({ id, icon: Icon }) => {
+                      const isSelected = activeCategory === id;
+                      return (
+                        <button
+                          key={id}
+                          onClick={() => {
+                            setActiveCategory(id);
+                            setOpenIndex(0);
+                          }}
+                          className={`flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-semibold uppercase tracking-wider transition-all whitespace-nowrap lg:whitespace-normal ${
+                            isSelected
+                              ? "bg-[#181512] text-white shadow-xs"
+                              : "bg-[#FAF7F2] text-stone-700 hover:bg-[#EFE8DC] border border-[#E0D8CB]"
+                          }`}
+                        >
+                          <Icon className={`text-base flex-shrink-0 ${isSelected ? "text-amber-400" : "text-[#8C4A00]"}`} />
+                          <span>{id}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
 
-              {/* Sidebar Category Nav */}
-              <div className="lg:w-56 flex-shrink-0">
-                <div className="lg:sticky lg:top-28 flex flex-row lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0">
-                  {categories.map((cat) => {
-                    const Icon = CATEGORY_ICONS[cat];
+              {/* Accordion Questions */}
+              <div className="flex-1 w-full">
+                <div className="mb-6 flex items-center justify-between">
+                  <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#181512]">
+                    {searchFilter ? `Search Results (${filteredFaqs.length})` : activeCategory}
+                  </h2>
+                  <span className="font-mono text-xs text-stone-500">
+                    {filteredFaqs.length} questions
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-3.5">
+                  {filteredFaqs.map((faq, i) => {
+                    const isOpen = openIndex === i;
                     return (
-                      <button
-                        key={cat}
-                        onClick={() => setActiveCategory(cat)}
-                        className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl text-left text-sm font-semibold whitespace-nowrap lg:whitespace-normal transition-all ${
-                          activeCategory === cat
-                            ? "bg-amber-600 text-white shadow-sm"
-                            : "bg-stone-100 text-stone-600 hover:bg-amber-50 hover:text-amber-700"
+                      <div
+                        key={faq.q}
+                        className={`border rounded-2xl transition-all ${
+                          isOpen ? "border-[#8C4A00] bg-[#FAF7F2]/40" : "border-[#E5DFD5] bg-white hover:border-[#D0C7B8]"
                         }`}
                       >
-                        <Icon className="text-base flex-shrink-0" />
-                        {cat}
-                      </button>
+                        <button
+                          onClick={() => setOpenIndex(isOpen ? -1 : i)}
+                          className="w-full flex items-center justify-between gap-4 p-5 text-left text-[#181512]"
+                        >
+                          <span className="font-serif text-lg font-bold leading-snug">
+                            {faq.q}
+                          </span>
+                          <span className="w-8 h-8 rounded-full bg-[#FAF0E4] text-[#8C4A00] flex items-center justify-center flex-shrink-0">
+                            {isOpen ? <FiChevronUp /> : <FiChevronDown />}
+                          </span>
+                        </button>
+                        {isOpen && (
+                          <div className="px-5 pb-5 text-sm sm:text-base text-stone-600 leading-relaxed font-sans border-t border-[#EAE3D5] pt-4">
+                            {faq.a}
+                          </div>
+                        )}
+                      </div>
                     );
                   })}
                 </div>
               </div>
 
-              {/* FAQ List */}
-              <div className="flex-1">
-                <div className="mb-6">
-                  <h2 className="font-serif text-2xl font-bold text-stone-900">{activeCategory}</h2>
-                  <p className="text-sm text-stone-400 mt-1">
-                    {FAQS[activeCategory].length} questions
-                  </p>
-                </div>
-                <div className="flex flex-col gap-3">
-                  {FAQS[activeCategory].map((faq, i) => (
-                    <FAQAccordion key={i} q={faq.q} a={faq.a} />
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        {/* Still have questions */}
-        <section className="py-14 bg-stone-50 border-t border-stone-200">
+        {/* ── STILL HAVE QUESTIONS? ── */}
+        <section className="py-16 bg-[#F4EFE6] border-t border-[#E7E2D8]">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-serif text-3xl font-bold text-stone-900 mb-3">
-              Still Have Questions?
+            <span className="font-mono text-xs uppercase tracking-[0.25em] text-[#8C4A00] font-bold block mb-3">
+              {f.hero_tag || "Direct Farmer Support"}
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#181512] mb-3">
+              {f.still_questions || "Still Have a Question?"}
             </h2>
-            <p className="text-stone-500 mb-8">
-              Our team responds within 2 hours on business days. Reach us on WhatsApp for the fastest response.
+            <p className="text-stone-600 text-sm sm:text-base mb-8 max-w-xl mx-auto leading-relaxed">
+              {f.still_p || "We are an open collective. Call our apiary desk directly or talk to us on WhatsApp."}
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
+
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <a
-                href="https://wa.me/917071101119?text=Hi%20Bee%20Desi,%20I%20have%20a%20question"
+                href="https://wa.me/917071101119?text=Namaste%20Bee%20Desi,%20I%20have%20a%20question%20about%20your%20honey"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-2xl font-bold text-sm transition-all shadow-lg shadow-emerald-200 group"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-emerald-800 hover:bg-emerald-700 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-xs"
               >
-                <FiMessageCircle className="text-lg" />
-                Chat on WhatsApp (7071101119)
-                <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
+                <FiMessageCircle className="text-base" />
+                <span>WhatsApp: 7071101119</span>
               </a>
+
               <a
-                href="mailto:hello@beedesi.in"
-                className="flex items-center gap-2.5 bg-white border border-stone-200 hover:border-amber-300 text-stone-700 px-6 py-4 rounded-2xl font-bold text-sm transition-all shadow-sm"
+                href="tel:9307777500"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-[#EFE8DC] border border-[#D5CDBD] text-[#181512] font-semibold text-xs uppercase tracking-wider transition-colors shadow-xs"
               >
-                Email Us
+                <FiPhone className="text-[#8C4A00]" />
+                <span>Call: 9307777500</span>
               </a>
+
               <Link
                 href="/contact"
-                className="flex items-center gap-2.5 bg-white border border-stone-200 hover:border-amber-300 text-stone-700 px-6 py-4 rounded-2xl font-bold text-sm transition-all shadow-sm"
+                className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-[#EFE8DC] border border-[#D5CDBD] text-[#181512] font-semibold text-xs uppercase tracking-wider transition-colors shadow-xs"
               >
-                Contact Page
+                <span>Contact Desk &amp; Map</span>
               </Link>
             </div>
           </div>
         </section>
+
       </main>
 
       <Footer />

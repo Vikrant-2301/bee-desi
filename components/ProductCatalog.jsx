@@ -5,16 +5,17 @@ import Image from "next/image";
 import { PRODUCTS, TERROIRS, AYURVEDIC_BENEFITS } from "@/data/products";
 import ProductCard from "./ProductCard";
 import { useCart } from "@/context/CartContext";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   FiSearch,
-  FiFilter,
+  FiSliders,
   FiCompass,
-  FiCheck,
-  FiSliders
+  FiX,
 } from "react-icons/fi";
 
 export default function ProductCatalog() {
   const { openQuiz } = useCart();
+  const { t } = useLanguage();
   const [selectedTerroir, setSelectedTerroir] = useState("all");
   const [selectedBenefit, setSelectedBenefit] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,7 +24,9 @@ export default function ProductCatalog() {
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
       const matchTerroir =
-        selectedTerroir === "all" || product.biome === selectedTerroir;
+        selectedTerroir === "all" ||
+        product.biome === selectedTerroir ||
+        (product.terroir && product.terroir.toLowerCase().includes(selectedTerroir.toLowerCase()));
 
       const matchBenefit =
         selectedBenefit === "all" || product.ayurvedicBenefit === selectedBenefit;
@@ -31,9 +34,9 @@ export default function ProductCatalog() {
       const matchSearch =
         searchQuery.trim() === "" ||
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.terroir.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.sensoryNotes.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchQuery.toLowerCase());
+        (product.terroir && product.terroir.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (product.sensoryNotes && product.sensoryNotes.toLowerCase().includes(searchQuery.toLowerCase())) ||
+        (product.description && product.description.toLowerCase().includes(searchQuery.toLowerCase()));
 
       return matchTerroir && matchBenefit && matchSearch;
     }).sort((a, b) => {
@@ -44,161 +47,149 @@ export default function ProductCatalog() {
     });
   }, [selectedTerroir, selectedBenefit, searchQuery, sortBy]);
 
-  return (
-    <section id="catalog" className="w-full py-20 bg-surface scroll-mt-24 relative overflow-hidden">
-      {/* Background Honeycomb & Swirl Accents (assets 1.png & 5.png) */}
-      <div className="absolute top-10 right-0 w-44 h-44 opacity-10 pointer-events-none select-none">
-        <Image
-          src="/images/assets/1.png"
-          alt="Honeycomb Accent"
-          fill
-          className="object-contain"
-        />
-      </div>
-      <div className="absolute bottom-20 left-0 w-52 h-52 opacity-10 pointer-events-none select-none">
-        <Image
-          src="/images/assets/5.png"
-          alt="Honey Swirl Accent"
-          fill
-          className="object-contain"
-        />
-      </div>
+  // Clean list of unique terroirs without duplicate "all"
+  const terroirOptions = useMemo(() => {
+    return TERROIRS.filter((t) => t.id !== "all");
+  }, []);
 
+  // Clean list of unique benefits without duplicate "all"
+  const benefitOptions = useMemo(() => {
+    return AYURVEDIC_BENEFITS.filter((b) => b.id !== "all");
+  }, []);
+
+  return (
+    <section id="catalog" className="w-full py-20 bg-[#FAF7F2] scroll-mt-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-[#E8E2D6] pb-8">
           <div className="flex flex-col gap-2 max-w-2xl">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-              <span>Botanical Single-Flora Spectrum</span>
-              <span className="opacity-40">•</span>
-              <span>100% Raw &amp; Traceable</span>
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-propolis-charcoal leading-tight">
-              Single-Flora Harvests from India's Forest Canopies
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-[#8C4A00]">
+              {t("cat_tag", "The Seasonal Flora Portfolio")}
+            </span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-[#181512] leading-tight">
+              {t("cat_h2", "Single-Flora Forest Canopies")}
             </h2>
-            <p className="text-sm sm:text-base text-on-surface-variant leading-relaxed">
-              Unlike industrial honey blended from unknown syrups, each Bee Desi jar captures the unadulterated nectar of a single botanical bloom in a single agro-climatic terroir.
+            <p className="text-sm sm:text-base text-[#4A4038] leading-relaxed">
+              {t("cat_sub", "Each jar captures the unadulterated nectar of a single botanical bloom in a single Indian forest terroir. Never blended with sugar syrup, never micro-filtered.")}
             </p>
           </div>
 
-          {/* Sommelier Quiz Callout with Flying Honeybee (asset 10.png) */}
+          {/* Sommelier Matcher Quick Link */}
           <button
             onClick={openQuiz}
-            className="flex-shrink-0 px-4 py-3 rounded-xl bg-surface-container-low border border-amber-radiance/30 hover:border-amber-radiance text-propolis-charcoal flex items-center gap-3 shadow-sm btn-tactile group relative"
+            className="flex-shrink-0 px-4 py-3 rounded-2xl bg-white border border-[#E0D8CB] hover:border-[#8C4A00] text-[#181512] flex items-center gap-3 shadow-xs transition-colors group"
           >
-            <div className="w-9 h-9 rounded-lg bg-amber-radiance/20 text-primary flex items-center justify-center relative overflow-hidden">
-              <Image
-                src="/images/assets/10.png"
-                alt="Bee"
-                width={28}
-                height={28}
-                className="object-contain group-hover:scale-110 transition-transform"
-              />
+            <div className="w-8 h-8 rounded-xl bg-[#FAF0E4] text-[#8C4A00] flex items-center justify-center text-sm">
+              <FiCompass />
             </div>
             <div className="flex flex-col text-left">
-              <span className="text-xs font-bold text-propolis-charcoal">Not sure which nectar to choose?</span>
-              <span className="text-[11px] text-primary font-semibold">Take 30-sec Terroir Matcher Quiz →</span>
+              <span className="text-xs font-bold text-[#181512]">{t("cat_quiz_box_title", "Not sure which nectar to choose?")}</span>
+              <span className="text-[11px] text-[#8C4A00] font-semibold">{t("cat_quiz_box_link", "Take 30-sec Terroir Matcher Quiz →")}</span>
             </div>
           </button>
         </div>
 
-        {/* Filter and Search Bar */}
-        <div className="bg-surface-container-low/80 backdrop-blur-md rounded-2xl p-4 sm:p-5 border border-outline-variant/30 mb-10 flex flex-col gap-4 shadow-sm">
+        {/* Clean Modern Filter Bar */}
+        <div className="bg-white/80 backdrop-blur-md rounded-2xl p-5 border border-[#E0D8CB] mb-12 flex flex-col gap-4 shadow-xs">
+          
           {/* Top Line: Search & Sort */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3.5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             {/* Search Input */}
             <div className="relative w-full sm:w-80">
-              <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-sm" />
+              <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-sm" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search flora, terroir, or tasting notes..."
-                className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm rounded-xl bg-surface border border-outline-variant/40 focus:outline-none focus:border-primary text-on-surface placeholder:text-outline/70 shadow-inner"
+                placeholder={t("cat_search_placeholder", "Search flora, terroir, tasting notes...")}
+                className="w-full pl-9 pr-8 py-2 text-xs sm:text-sm rounded-xl bg-[#FAF7F2] border border-[#E0D8CB] focus:outline-none focus:border-[#8C4A00] text-stone-900 placeholder:text-stone-400"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-outline hover:text-on-surface"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-stone-400 hover:text-stone-700"
                 >
-                  ✕
+                  <FiX />
                 </button>
               )}
             </div>
 
             {/* Sort & Counter */}
             <div className="flex items-center justify-between w-full sm:w-auto gap-4">
-              <span className="text-xs text-on-surface-variant font-medium">
-                Showing <strong className="text-propolis-charcoal">{filteredProducts.length}</strong> single-flora harvests
+              <span className="text-xs text-stone-600 font-mono">
+                {t("cat_showing", "Showing")} <strong className="text-stone-900 font-bold">{filteredProducts.length}</strong> {t("cat_harvests", "single-flora harvests")}
               </span>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs text-outline hidden sm:inline">Sort:</span>
+                <span className="text-xs text-stone-500 font-mono hidden sm:inline">{t("cat_sort", "Sort:")}</span>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-1.5 rounded-lg bg-surface border border-outline-variant/40 text-xs font-semibold text-on-surface focus:outline-none focus:border-primary cursor-pointer"
+                  className="px-3 py-1.5 rounded-lg bg-[#FAF7F2] border border-[#E0D8CB] text-xs font-semibold text-stone-800 focus:outline-none focus:border-[#8C4A00] cursor-pointer"
                 >
-                  <option value="featured">Featured First</option>
-                  <option value="rating">Highest Rated</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
+                  <option value="featured">{t("cat_sort_featured", "Featured First")}</option>
+                  <option value="rating">{t("cat_sort_rating", "Highest Rated")}</option>
+                  <option value="price-low">{t("cat_sort_low", "Price: Low to High")}</option>
+                  <option value="price-high">{t("cat_sort_high", "Price: High to Low")}</option>
                 </select>
               </div>
             </div>
           </div>
 
-          {/* Terroirs / Biomes Row */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            <span className="text-xs text-outline font-semibold flex-shrink-0 flex items-center gap-1">
-              <FiSliders className="text-primary text-xs" /> Terroirs:
+          {/* Terroirs Row */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none pt-1">
+            <span className="text-xs text-stone-500 font-mono font-semibold flex-shrink-0 flex items-center gap-1">
+              <FiSliders className="text-[#8C4A00] text-xs" /> {t("cat_terroirs", "Terroirs:")}
             </span>
             <button
               onClick={() => setSelectedTerroir("all")}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex-shrink-0 ${
+              className={`px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all flex-shrink-0 ${
                 selectedTerroir === "all"
-                  ? "bg-primary text-white shadow-sm"
-                  : "bg-surface text-on-surface-variant hover:bg-surface-container border border-outline-variant/30"
+                  ? "bg-[#181512] text-white shadow-xs"
+                  : "bg-[#FAF7F2] text-stone-600 hover:bg-[#EFE8DC] border border-[#E0D8CB]"
               }`}
             >
-              All Regions
+              {t("cat_all_regions", "All Regions")}
             </button>
-            {TERROIRS.map((t) => (
+            {terroirOptions.map((tItem) => (
               <button
-                key={t.id}
-                onClick={() => setSelectedTerroir(t.id)}
-                className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex-shrink-0 ${
-                  selectedTerroir === t.id
-                    ? "bg-primary text-white shadow-sm"
-                    : "bg-surface text-on-surface-variant hover:bg-surface-container border border-outline-variant/30"
+                key={tItem.id}
+                onClick={() => setSelectedTerroir(tItem.id)}
+                className={`px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all flex-shrink-0 ${
+                  selectedTerroir === tItem.id
+                    ? "bg-[#181512] text-white shadow-xs"
+                    : "bg-[#FAF7F2] text-stone-600 hover:bg-[#EFE8DC] border border-[#E0D8CB]"
                 }`}
               >
-                {t.name}
+                {tItem.label}
               </button>
             ))}
           </div>
 
           {/* Ayurvedic Health Filters */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-t border-outline-variant/20 pt-3">
-            <span className="text-xs text-outline font-semibold flex-shrink-0">Ayurvedic Intention:</span>
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-t border-[#EDE7DD] pt-3">
+            <span className="text-xs text-stone-500 font-mono font-semibold flex-shrink-0">
+              {t("cat_intentions", "Health Intention:")}
+            </span>
             <button
               onClick={() => setSelectedBenefit("all")}
-              className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex-shrink-0 ${
+              className={`px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all flex-shrink-0 ${
                 selectedBenefit === "all"
-                  ? "bg-primary text-white shadow-sm"
-                  : "bg-surface text-on-surface-variant hover:bg-surface-container border border-outline-variant/30"
+                  ? "bg-[#8C4A00] text-white shadow-xs"
+                  : "bg-[#FAF7F2] text-stone-600 hover:bg-[#EFE8DC] border border-[#E0D8CB]"
               }`}
             >
-              All Benefits
+              {t("cat_all_intentions", "All Intentions")}
             </button>
-            {AYURVEDIC_BENEFITS.map((b) => (
+            {benefitOptions.map((b) => (
               <button
                 key={b.id}
                 onClick={() => setSelectedBenefit(b.id)}
-                className={`px-3 py-1 rounded-full text-xs font-semibold transition-colors flex-shrink-0 ${
+                className={`px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all flex-shrink-0 ${
                   selectedBenefit === b.id
-                    ? "bg-primary text-white shadow-sm"
-                    : "bg-surface text-on-surface-variant hover:bg-surface-container border border-outline-variant/30"
+                    ? "bg-[#8C4A00] text-white shadow-xs"
+                    : "bg-[#FAF7F2] text-stone-600 hover:bg-[#EFE8DC] border border-[#E0D8CB]"
                 }`}
               >
                 {b.label}
@@ -207,29 +198,23 @@ export default function ProductCatalog() {
           </div>
         </div>
 
-        {/* Products Grid */}
+        {/* ── PRODUCTS GRID (RELIABLE, 100% VISIBLE, NO CARD BOX/BORDER) ── */}
         {filteredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         ) : (
-          <div className="bg-surface-container-low rounded-2xl p-12 text-center border border-outline-variant/30 flex flex-col items-center gap-4">
-            {/* Watercolor Honey Dipper in Empty State (asset 2.png) */}
-            <div className="w-20 h-28 relative">
-              <Image
-                src="/images/assets/2.png"
-                alt="Empty Search Honey Dipper"
-                fill
-                className="object-contain"
-              />
+          <div className="bg-white rounded-2xl p-12 text-center border border-[#E0D8CB] flex flex-col items-center gap-4">
+            <div className="w-16 h-16 rounded-full bg-[#FAF0E4] text-[#8C4A00] flex items-center justify-center text-2xl">
+              🍯
             </div>
-            <h3 className="font-serif text-xl font-semibold text-propolis-charcoal">
+            <h3 className="font-serif text-2xl font-bold text-[#181512]">
               No matching single-flora harvests found
             </h3>
-            <p className="text-sm text-on-surface-variant max-w-md">
-              Try adjusting your biome or ayurvedic filters, or clear your search query to see all available seasonal vintages.
+            <p className="text-sm text-stone-600 max-w-md">
+              Try adjusting your terroir or ayurvedic filters, or reset to view all available harvests.
             </p>
             <button
               onClick={() => {
@@ -237,9 +222,9 @@ export default function ProductCatalog() {
                 setSelectedBenefit("all");
                 setSearchQuery("");
               }}
-              className="px-5 py-2.5 rounded-xl bg-propolis-charcoal text-honeycomb-cream text-xs font-semibold uppercase tracking-wider hover:bg-primary transition-colors btn-tactile"
+              className="px-5 py-2.5 rounded-xl bg-[#181512] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#8C4A00] transition-colors"
             >
-              Reset All Filters
+              Reset Filters
             </button>
           </div>
         )}

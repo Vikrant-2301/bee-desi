@@ -1,5 +1,6 @@
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import Script from "next/script";
 
 export const metadata = {
@@ -51,8 +52,11 @@ export default function RootLayout({ children }) {
           src="https://checkout.razorpay.com/v1/checkout.js"
           strategy="lazyOnload"
         />
-        <CartProvider>{children}</CartProvider>
+        <LanguageProvider>
+          <CartProvider>{children}</CartProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
 }
+

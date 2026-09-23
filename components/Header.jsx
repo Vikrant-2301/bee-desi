@@ -17,22 +17,25 @@ import {
   FiPackage,
   FiTruck,
   FiPhone,
-  FiMapPin,
-  FiExternalLink,
+  FiShield,
+  FiArrowRight,
 } from "react-icons/fi";
-
-const NAV_LINKS = [
-  { label: "Shop Nectars", href: "/#catalog", section: "catalog" },
-  { label: "Our Story", href: "/our-story", section: null, highlight: "Suresh Yadav '96" },
-  { label: "Why Us", href: "/why-us", section: null },
-  { label: "NMR Lab", href: "/#nmr-lab", section: "nmr-lab", badge: "0.00% Pure" },
-  { label: "FAQs", href: "/faqs", section: null },
-  { label: "Contact & HQ", href: "/contact", section: null },
-];
+import LanguageSelector from "@/components/LanguageSelector";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Header() {
   const router = useRouter();
   const { cartCount, subtotal, wishlist, openQuiz, user, logout, currency, setCurrency } = useCart();
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { label: t("nav_shop", "Shop Nectars"), href: "/#catalog", section: "catalog" },
+    { label: t("nav_story", "Our Story"), href: "/our-story", section: null },
+    { label: t("nav_whyus", "Why Bee Desi"), href: "/why-us", section: null },
+    { label: t("nav_nmr", "NMR Lab Purity"), href: "/#nmr-lab", section: "nmr-lab" },
+    { label: t("nav_faqs", "FAQs & Terroirs"), href: "/faqs", section: null },
+    { label: t("nav_contact", "Contact & HQ"), href: "/contact", section: null },
+  ];
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -87,59 +90,67 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 select-none">
-      {/* ── TOP TICKER: Micro Bar with Live Signals & Contacts ── */}
-      <div className="bg-[#120c06] text-amber-100/90 text-[11px] font-medium border-b border-amber-900/30">
+      {/* ── TOP ANNOUNCEMENT TICKER: Exact requested pointers + Indian Flag ── */}
+      <div className="bg-[#1A120B] text-[#EADBCA] text-[11px] font-medium border-b border-[#332214]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-8">
           
-          {/* Left: Founder trust mark */}
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 text-amber-400 font-semibold tracking-wide">
-              <span className="relative w-3.5 h-3.5 flex-shrink-0 animate-bounce">
-                <Image src="/images/assets/10.png" alt="Bee" fill className="object-contain" />
-              </span>
-              <span>Suresh Yadav's Apiaries</span>
+          {/* Left: Indian Flag + Core Value Pointers */}
+          <div className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto scrollbar-none py-1">
+            <span className="text-sm flex-shrink-0" role="img" aria-label="India Flag">
+              🇮🇳
             </span>
-            <span className="hidden md:inline text-stone-500">·</span>
-            <span className="hidden md:inline text-stone-300">Farmer Founded 1996</span>
-            <span className="hidden lg:inline text-stone-500">·</span>
-            <span className="hidden lg:inline text-emerald-400 font-mono text-[10px] bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-800/60">
-              German NMR Tested
+            <span className="font-semibold text-amber-200/90 whitespace-nowrap text-[10px] sm:text-[11px]">
+              {t("ticker_f2c", "Farmer to Consumer")}
+            </span>
+            <span className="text-[#6E5540] hidden sm:inline">•</span>
+            <span className="text-stone-300 whitespace-nowrap hidden sm:inline text-[11px]">
+              {t("ticker_nobrokers", "No Brokers")}
+            </span>
+            <span className="text-[#6E5540] hidden md:inline">•</span>
+            <span className="text-stone-300 whitespace-nowrap hidden md:inline text-[11px]">
+              {t("ticker_panindia", "PAN India Delivery")}
             </span>
           </div>
 
-          {/* Right: Phone Helplines + Office Map */}
-          <div className="flex items-center gap-3 sm:gap-4 text-[11px]">
-            <div className="flex items-center gap-2 text-stone-300">
-              <FiPhone className="text-amber-400 text-xs flex-shrink-0" />
-              <a href="tel:7071101119" className="hover:text-amber-300 font-bold tracking-tight transition-colors">
+          {/* Right: Phone | Help Centre | Currency */}
+          <div className="flex items-center gap-2 sm:gap-4 text-[10px] sm:text-[11px] flex-shrink-0">
+            <div className="flex items-center gap-1 sm:gap-1.5 text-stone-300">
+              <span className="text-amber-400">📞</span>
+              <a
+                href="tel:7071101119"
+                className="text-amber-300 font-bold hover:text-white transition-colors"
+              >
                 7071101119
               </a>
-              <span className="text-stone-600">/</span>
-              <a href="tel:9307777500" className="hover:text-amber-300 font-bold tracking-tight transition-colors">
+              <span className="text-stone-500 hidden sm:inline">/</span>
+              <a
+                href="tel:9307777500"
+                className="text-amber-300 font-bold hover:text-white transition-colors hidden sm:inline"
+              >
                 9307777500
               </a>
             </div>
 
-            <span className="hidden sm:inline text-stone-700">|</span>
+            <span className="text-[#4A3828] hidden sm:inline">|</span>
 
-            {/* Office Map Link */}
-            <a
-              href="https://maps.app.goo.gl/XLW9mfgrwBQk5NcD7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1 text-amber-400 hover:text-white font-medium transition-colors group"
+            <Link
+              href="/contact"
+              className="text-stone-300 hover:text-white transition-colors whitespace-nowrap hidden sm:inline"
             >
-              <FiMapPin className="text-xs group-hover:scale-110 transition-transform" />
-              <span>Office Map</span>
-              <FiExternalLink className="text-[10px] opacity-70" />
-            </a>
+              {t("ticker_help", "Help Centre")}
+            </Link>
 
-            <span className="hidden sm:inline text-stone-700">|</span>
+            <span className="text-[#4A3828]">|</span>
+
+            {/* Language Selector Dropdown */}
+            <LanguageSelector variant="topbar" />
+
+            <span className="text-[#4A3828]">|</span>
 
             {/* Currency toggle */}
             <button
               onClick={() => setCurrency(currency === "INR" ? "USD" : "INR")}
-              className="text-amber-400 font-bold hover:text-white transition-colors"
+              className="text-amber-400 font-bold hover:text-amber-300 transition-colors"
             >
               {currency === "INR" ? "₹ INR" : "$ USD"}
             </button>
@@ -147,82 +158,70 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ── MAIN CRAZY LUXURY NAVBAR ── */}
+      {/* ── MAIN LUXURY MODERN NAVBAR ── */}
       <div
         className={`transition-all duration-300 ${
           scrolled
-            ? "bg-[#fffdfa]/95 backdrop-blur-md shadow-[0_8px_30px_rgba(180,83,9,0.12)] border-b border-amber-300/40"
-            : "bg-[#fffdfa]/90 backdrop-blur-md border-b border-amber-200/50"
+            ? "bg-[#FAF7F2]/95 backdrop-blur-xl shadow-[0_4px_24px_rgba(24,21,18,0.06)] border-b border-[#E8E2D6]"
+            : "bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#EDE7DD]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14 sm:h-16 gap-3">
+          <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
 
-            {/* LOGO: Distinctive Brand Mark with Golden Halo */}
-            <Link href="/" className="flex items-center gap-2.5 flex-shrink-0 group">
-              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-gradient-to-br from-amber-400 via-amber-500 to-yellow-600 p-[2px] shadow-md shadow-amber-500/20 group-hover:shadow-amber-500/40 transition-all duration-300 flex-shrink-0">
-                <div className="w-full h-full rounded-[14px] bg-white flex items-center justify-center overflow-hidden">
-                  <Image
-                    src="/images/logo.png"
-                    alt="Bee Desi"
-                    width={38}
-                    height={38}
-                    className="object-contain group-hover:scale-110 transition-transform duration-300"
-                    priority
-                  />
-                </div>
+            {/* BRAND LOGO */}
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0 group">
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-[#E0D8CB] p-1.5 shadow-sm group-hover:border-amber-400 transition-all duration-300 flex-shrink-0 flex items-center justify-center">
+                <Image
+                  src="/images/logo.png"
+                  alt="Bee Desi Artisanal Honey"
+                  width={34}
+                  height={34}
+                  className="object-contain group-hover:scale-105 transition-transform"
+                  priority
+                />
               </div>
               <div className="flex flex-col leading-none">
-                <span className="font-serif text-xl sm:text-[22px] font-bold text-stone-900 tracking-tight flex items-center gap-1">
+                <span className="font-serif text-2xl sm:text-[25px] font-bold text-[#181512] tracking-tight">
                   Bee Desi
                 </span>
-                <span className="text-[9px] font-extrabold uppercase tracking-[0.25em] text-amber-700 mt-0.5">
-                  Artisanal Apiaries
+                <span className="text-[9px] font-mono font-bold uppercase tracking-[0.22em] text-[#8C4A00] mt-1">
+                  Artisanal Raw Nectars
                 </span>
               </div>
             </Link>
 
-            {/* CENTER NAVIGATION PILLS */}
-            <nav className="hidden lg:flex items-center gap-1 bg-amber-50/70 border border-amber-200/50 rounded-full px-3 py-1 shadow-inner">
-              {NAV_LINKS.map((link) => (
+            {/* CENTER NAVIGATION LINKS (Clean, Architectural, No cheesy badges) */}
+            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+              {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
                   onClick={() => link.section && scrollToSection(link.section)}
-                  className="relative px-3.5 py-1.5 rounded-full text-xs font-bold text-stone-700 hover:text-stone-950 hover:bg-white transition-all flex items-center gap-1.5 whitespace-nowrap"
+                  className="px-3.5 py-2 rounded-lg text-[13px] font-semibold text-[#3D352F] hover:text-[#181512] hover:bg-black/[0.035] transition-colors whitespace-nowrap"
                 >
-                  <span>{link.label}</span>
-                  {link.highlight && (
-                    <span className="text-[9px] font-bold bg-amber-500 text-stone-950 px-1.5 py-0.2 rounded-full uppercase tracking-tighter">
-                      {link.highlight}
-                    </span>
-                  )}
-                  {link.badge && (
-                    <span className="text-[9px] font-black bg-emerald-600 text-white px-1.5 py-0.2 rounded-full uppercase tracking-tighter">
-                      {link.badge}
-                    </span>
-                  )}
+                  {link.label}
                 </Link>
               ))}
             </nav>
 
-            {/* RIGHT CONTROLS: Sommelier Quiz Pill + Search + Account + Cart */}
-            <div className="flex items-center gap-2 sm:gap-2.5 flex-shrink-0">
+            {/* RIGHT UTILITIES: Find My Flavor + Search + Wishlist + Account + Cart */}
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
 
-              {/* Honey Sommelier Quiz Pill */}
+              {/* Sommelier Finder Pill */}
               <button
                 onClick={openQuiz}
-                className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-r from-amber-500 to-yellow-500 text-stone-950 font-bold text-xs hover:brightness-105 active:scale-95 transition-all shadow-sm shadow-amber-500/30"
+                className="hidden md:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#FAF0E4] hover:bg-[#F3E5D4] text-[#8C4A00] border border-[#EAD5BF] font-semibold text-xs transition-all active:scale-95"
               >
                 <FiCompass className="text-sm" />
-                <span>Sommelier Quiz</span>
+                <span>{t("nav_quiz", "Find Your Nectar")}</span>
               </button>
 
               {/* Search Toggle */}
               <button
                 onClick={() => setSearchOpen(!searchOpen)}
                 aria-label="Search"
-                className="w-9 h-9 rounded-xl bg-amber-50 hover:bg-amber-100 text-stone-700 hover:text-amber-900 border border-amber-200/60 flex items-center justify-center transition-colors"
+                className="w-10 h-10 rounded-xl bg-white hover:bg-[#F5F0E6] text-[#3D352F] border border-[#E0D8CB] flex items-center justify-center transition-colors shadow-xs"
               >
                 <FiSearch className="text-base" />
               </button>
@@ -231,11 +230,11 @@ export default function Header() {
               <button
                 onClick={() => scrollToSection("catalog")}
                 aria-label="Wishlist"
-                className="relative w-9 h-9 rounded-xl bg-amber-50 hover:bg-amber-100 text-stone-700 hover:text-amber-900 border border-amber-200/60 hidden sm:flex items-center justify-center transition-colors"
+                className="relative w-10 h-10 rounded-xl bg-white hover:bg-[#F5F0E6] text-[#3D352F] border border-[#E0D8CB] hidden sm:flex items-center justify-center transition-colors shadow-xs"
               >
                 <FiHeart className="text-base" />
                 {wishlist.length > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full text-[9px] flex items-center justify-center font-black">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 text-white rounded-full text-[9px] flex items-center justify-center font-bold">
                     {wishlist.length}
                   </span>
                 )}
@@ -245,20 +244,20 @@ export default function Header() {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setUserDropdownOpen(!userDropdownOpen)}
-                  className="w-9 h-9 rounded-xl bg-amber-50 hover:bg-amber-100 text-stone-700 hover:text-amber-900 border border-amber-200/60 flex items-center justify-center transition-colors"
+                  className="w-10 h-10 rounded-xl bg-white hover:bg-[#F5F0E6] text-[#3D352F] border border-[#E0D8CB] flex items-center justify-center transition-colors shadow-xs"
                   aria-label="Account"
                 >
                   <FiUser className="text-base" />
                 </button>
 
                 {userDropdownOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl shadow-2xl border border-amber-200/80 p-2 z-50">
+                  <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl shadow-xl border border-[#E0D8CB] p-2 z-50">
                     <div className="px-3 py-2 border-b border-stone-100 mb-1">
                       <strong className="block text-stone-900 font-serif text-sm truncate">
-                        {user?.name || "Guest Connoisseur"}
+                        {user?.name || "Customer Account"}
                       </strong>
-                      <span className="text-[10px] text-amber-700 font-semibold">
-                        {user ? "Verified Member" : "Direct Farm Access"}
+                      <span className="text-[10px] text-[#8C4A00] font-mono font-semibold">
+                        Direct Farm Access
                       </span>
                     </div>
                     {user ? (
@@ -266,17 +265,17 @@ export default function Header() {
                         <Link
                           href="/dashboard"
                           onClick={() => setUserDropdownOpen(false)}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-amber-50 text-stone-800 font-semibold text-xs transition-colors"
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-[#FAF7F2] text-stone-800 font-semibold text-xs transition-colors"
                         >
-                          <FiPackage className="text-amber-600" />
+                          <FiPackage className="text-[#8C4A00]" />
                           My Orders
                         </Link>
                         <Link
                           href="/track-order"
                           onClick={() => setUserDropdownOpen(false)}
-                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-amber-50 text-stone-800 font-semibold text-xs transition-colors"
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-[#FAF7F2] text-stone-800 font-semibold text-xs transition-colors"
                         >
-                          <FiTruck className="text-amber-600" />
+                          <FiTruck className="text-[#8C4A00]" />
                           Track Parcel
                         </Link>
                         <div className="my-1 border-t border-stone-100" />
@@ -296,16 +295,16 @@ export default function Header() {
                         <Link
                           href="/login"
                           onClick={() => setUserDropdownOpen(false)}
-                          className="flex items-center justify-center mx-1 my-1 py-2.5 rounded-xl bg-amber-600 text-white font-bold text-xs uppercase tracking-wide hover:bg-amber-700 transition-colors shadow-sm"
+                          className="flex items-center justify-center mx-1 my-1 py-2.5 rounded-xl bg-[#181512] text-white font-bold text-xs uppercase tracking-wide hover:bg-[#8C4A00] transition-colors"
                         >
-                          Sign In / Join
+                          Sign In / Register
                         </Link>
                         <Link
                           href="/track-order"
                           onClick={() => setUserDropdownOpen(false)}
                           className="flex items-center gap-2.5 px-3 py-2 rounded-xl hover:bg-stone-50 text-stone-700 font-semibold text-xs mt-1 transition-colors"
                         >
-                          <FiTruck className="text-amber-600" />
+                          <FiTruck className="text-[#8C4A00]" />
                           Track Order
                         </Link>
                       </>
@@ -317,18 +316,18 @@ export default function Header() {
               {/* Cart Button */}
               <Link
                 href="/cart"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-stone-900 text-white hover:bg-amber-600 active:scale-95 transition-all shadow-md group"
+                className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#181512] hover:bg-[#8C4A00] text-white active:scale-95 transition-all shadow-sm group"
                 aria-label="Cart"
               >
                 <div className="relative">
-                  <FiShoppingCart className="text-base text-amber-400 group-hover:text-white transition-colors" />
+                  <FiShoppingCart className="text-base text-amber-300 group-hover:text-white transition-colors" />
                   {cartCount > 0 && (
-                    <span className="absolute -top-2 -right-2 w-4 h-4 bg-amber-500 text-stone-950 rounded-full text-[9px] font-black flex items-center justify-center">
+                    <span className="absolute -top-2 -right-2 w-4 h-4 bg-[#8C4A00] text-white rounded-full text-[9px] font-bold flex items-center justify-center">
                       {cartCount}
                     </span>
                   )}
                 </div>
-                <span className="hidden sm:inline text-xs font-bold text-amber-200 group-hover:text-white">
+                <span className="hidden sm:inline text-xs font-semibold text-white">
                   {subtotal > 0 ? `₹${subtotal.toLocaleString("en-IN")}` : "Cart"}
                 </span>
               </Link>
@@ -336,17 +335,17 @@ export default function Header() {
               {/* Mobile Hamburger */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden w-9 h-9 rounded-xl bg-amber-50 text-stone-800 hover:bg-amber-100 transition-colors flex items-center justify-center border border-amber-200"
+                className="lg:hidden w-10 h-10 rounded-xl bg-white text-stone-800 hover:bg-[#F5F0E6] transition-colors flex items-center justify-center border border-[#E0D8CB]"
                 aria-label="Menu"
               >
-                {mobileMenuOpen ? <FiX className="text-lg text-amber-700" /> : <FiMenu className="text-lg" />}
+                {mobileMenuOpen ? <FiX className="text-lg text-[#8C4A00]" /> : <FiMenu className="text-lg" />}
               </button>
             </div>
           </div>
 
-          {/* Quick Expandable Search Bar */}
+          {/* Expandable Search Input */}
           {searchOpen && (
-            <div className="py-2.5 border-t border-amber-100 animate-fade-in-down">
+            <div className="py-3 border-t border-[#E8E2D6] animate-fade-in-down">
               <form onSubmit={handleSearch} className="flex gap-2">
                 <div className="relative flex-1">
                   <FiSearch className="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-sm" />
@@ -354,16 +353,16 @@ export default function Header() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search raw honey by terroir, floral bloom, Jamun, Acacia, Sidr..."
-                    className="w-full pl-10 pr-4 py-2 text-sm rounded-xl border border-amber-200 bg-amber-50/50 focus:bg-white focus:outline-none focus:border-amber-500 text-stone-900 placeholder-stone-400"
+                    placeholder={t("nav_search_placeholder", "Search raw honey by floral source: Jamun, Acacia, Mangrove, Sidr...")}
+                    className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-[#D5CDBD] bg-white focus:outline-none focus:border-[#8C4A00] text-stone-900 placeholder-stone-400"
                     autoFocus
                   />
                 </div>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-sm"
+                  className="px-5 py-2.5 rounded-xl bg-[#181512] hover:bg-[#8C4A00] text-white font-bold text-xs uppercase tracking-wider transition-colors"
                 >
-                  Search
+                  {t("nav_search_btn", "Search")}
                 </button>
               </form>
             </div>
@@ -373,26 +372,21 @@ export default function Header() {
 
       {/* ── MOBILE MENU DRAWER ── */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-white/98 backdrop-blur-xl border-b border-amber-200 shadow-2xl">
-          <div className="px-4 py-4 flex flex-col gap-2 max-w-lg mx-auto">
-            {/* Direct hotline bar in mobile drawer */}
-            <div className="p-3 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-xs font-bold text-stone-800">
-                <FiPhone className="text-amber-600" />
-                <span>7071101119 / 9307777500</span>
+        <div className="lg:hidden bg-[#FAF7F2] border-b border-[#E0D8CB] shadow-2xl">
+          <div className="px-4 py-5 flex flex-col gap-3 max-w-lg mx-auto">
+            {/* Quick helpline in drawer */}
+            <div className="p-3 rounded-xl bg-white border border-[#E0D8CB] flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2 font-semibold text-stone-800">
+                <FiPhone className="text-[#8C4A00]" />
+                <a href="tel:7071101119" className="hover:underline">7071101119</a>
+                <span>/</span>
+                <a href="tel:9307777500" className="hover:underline">9307777500</a>
               </div>
-              <a
-                href="https://maps.app.goo.gl/XLW9mfgrwBQk5NcD7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[11px] font-bold text-amber-700 hover:underline flex items-center gap-1"
-              >
-                <FiMapPin /> Office Map
-              </a>
+              <span className="text-[11px] font-mono text-stone-500">Pan-India Support</span>
             </div>
 
-            <div className="flex flex-col divide-y divide-stone-100">
-              {NAV_LINKS.map((link) => (
+            <div className="flex flex-col divide-y divide-[#EAE3D5]">
+              {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   href={link.href}
@@ -400,21 +394,19 @@ export default function Header() {
                     setMobileMenuOpen(false);
                     if (link.section) scrollToSection(link.section);
                   }}
-                  className="py-3 px-2 text-sm font-bold text-stone-800 flex items-center justify-between hover:text-amber-600 transition-colors"
+                  className="py-3 px-2 text-sm font-semibold text-stone-800 flex items-center justify-between hover:text-[#8C4A00] transition-colors"
                 >
                   <span>{link.label}</span>
-                  {link.highlight && (
-                    <span className="text-[10px] bg-amber-100 text-amber-900 font-bold px-2 py-0.5 rounded-full">
-                      {link.highlight}
-                    </span>
-                  )}
-                  {link.badge && (
-                    <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full">
-                      {link.badge}
-                    </span>
-                  )}
+                  <FiArrowRight className="text-xs text-stone-400" />
                 </Link>
               ))}
+            </div>
+
+            <div className="pt-1">
+              <span className="block text-[10px] font-mono font-bold uppercase tracking-wider text-[#8C4A00] mb-1.5">
+                Language / भाषा
+              </span>
+              <LanguageSelector variant="drawer" />
             </div>
 
             <button
@@ -422,30 +414,10 @@ export default function Header() {
                 setMobileMenuOpen(false);
                 openQuiz();
               }}
-              className="mt-2 w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-stone-950 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md"
+              className="mt-1 w-full py-3 rounded-xl bg-[#181512] text-white font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2"
             >
-              <FiCompass /> Take Honey Sommelier Quiz
+              <FiCompass /> Find Your Nectar Match
             </button>
-
-            {!user ? (
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 rounded-xl bg-stone-900 text-white font-bold text-xs uppercase tracking-wider text-center hover:bg-amber-600 transition-colors"
-              >
-                Sign In / Join Guild
-              </Link>
-            ) : (
-              <button
-                onClick={() => {
-                  logout();
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full py-2.5 rounded-xl border border-red-200 text-red-700 font-bold text-xs uppercase"
-              >
-                Sign Out
-              </button>
-            )}
           </div>
         </div>
       )}
