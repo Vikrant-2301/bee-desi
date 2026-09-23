@@ -290,46 +290,70 @@ export default function ContactPage() {
                       Official Dispatch Inquiries
                     </strong>
                     <a
-                      href="mailto:kingsaksham90@gmail.com"
+                      href="mailto:hello@beedesi.in"
                       className="text-amber-deep hover:underline font-mono"
                     >
-                      kingsaksham90@gmail.com
+                      hello@beedesi.in
                     </a>
                   </div>
                 </div>
 
-                {/* WhatsApp */}
+                {/* Calling & WhatsApp */}
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-800 flex-shrink-0 border border-emerald-200">
-                    <FiMessageSquare className="text-base" />
+                    <FiPhone className="text-base" />
                   </div>
                   <div>
                     <strong className="block text-propolis-charcoal font-serif text-sm">
-                      Sommelier WhatsApp Hotline
+                      Farmer Helplines &amp; WhatsApp
                     </strong>
+                    <div className="flex flex-wrap items-center gap-2 mt-0.5">
+                      <a
+                        href="tel:7071101119"
+                        className="text-stone-900 font-bold hover:text-amber-700 font-mono"
+                      >
+                        7071101119
+                      </a>
+                      <span className="text-stone-400">/</span>
+                      <a
+                        href="tel:9307777500"
+                        className="text-stone-900 font-bold hover:text-amber-700 font-mono"
+                      >
+                        9307777500
+                      </a>
+                    </div>
                     <a
-                      href="https://wa.me/919876543210"
+                      href="https://wa.me/917071101119?text=Hi%20Bee%20Desi%20team,%20I%20have%20an%20inquiry"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-emerald-800 hover:underline font-bold"
+                      className="inline-flex items-center gap-1 text-emerald-700 hover:underline font-semibold mt-1"
                     >
-                      +91 98765 43210 (Direct Concierge Chat)
+                      <FiMessageSquare className="text-xs" /> Chat on WhatsApp (7071101119)
                     </a>
                   </div>
                 </div>
 
-                {/* Sanctuary Headquarters */}
+                {/* Office & Apiary HQ with Map */}
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-surface-container flex items-center justify-center text-amber-radiance flex-shrink-0 border border-amber-radiance/20">
                     <FiMapPin className="text-base" />
                   </div>
                   <div>
                     <strong className="block text-propolis-charcoal font-serif text-sm">
-                      Central Indian Forest Apiary HQ
+                      Bee Desi Apiary Office &amp; Sanctuary
                     </strong>
                     <span className="text-on-surface-variant block mt-0.5 leading-relaxed">
-                      Bee Desi Artisanal Apiaries, Balaghat Dense Deciduous Canopy Reserve, Madhya Pradesh 481001, India.
+                      Founded by farmer Suresh Yadav (Since 1996). Direct farm gate &amp; artisanal testing center.
                     </span>
+                    <a
+                      href="https://maps.app.goo.gl/XLW9mfgrwBQk5NcD7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 text-stone-950 font-bold text-[11px] hover:bg-amber-400 transition-colors shadow-sm"
+                    >
+                      <FiMapPin className="text-xs" />
+                      <span>Open in Google Maps</span>
+                    </a>
                   </div>
                 </div>
               </div>
